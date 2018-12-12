@@ -1,7 +1,7 @@
 module.exports = function(sequelize, DataTypes) {
-    var User = sequelize.define("User", {
+    var Discipline = sequelize.define("Discipline", {
       hours: DataTypes.INTEGER,
       comment: DataTypes.TEXT
     });
-    return User;
+    return Discipline;
   };

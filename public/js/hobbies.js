@@ -46,6 +46,7 @@ function startTimer() {
 function stopTimer() {
     console.log("Timer stopped.");
     clearInterval(intervalId);
+    reset();
 };
 
 function count() {

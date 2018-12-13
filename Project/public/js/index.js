@@ -1,113 +1,99 @@
-function sign_up(){
-  var inputs = document.querySelectorAll(".input_form_sign");
-  document.querySelectorAll(".ul_tabs > li")[0].className=""; 
-  document.querySelectorAll(".ul_tabs > li")[1].className="active"; 
-  
-  for(var i = 0; i < inputs.length ; i++ ) {
-    if(i == 2 ){ 
+// Get references to page elements
+var $exampleText = $("#example-text");
+var $exampleDescription = $("#example-description");
+var $submitBtn = $("#submit");
+var $exampleList = $("#example-list");
 
-    }else{  
-      document.querySelectorAll(".input_form_sign")[i].className = "input_form_sign d_block";
-    }
-  } 
-
-
-
-  setTimeout( function(){
-    for(var d = 0; d < inputs.length ; d++ ) {
-      document.querySelectorAll(".input_form_sign")[d].className = "input_form_sign d_block active_inp";  
-    }
-
-
-  },100 );
-  document.querySelector(".link_forgot_pass").style.opacity = "0";
-  document.querySelector(".link_forgot_pass").style.top = "-5px";
-  document.querySelector(".btn_sign").innerHTML = "SIGN UP";    
-  setTimeout(function(){
-
-    document.querySelector(".terms_and_cons").style.opacity = "1";
-    document.querySelector(".terms_and_cons").style.top = "5px";
- 
-  },500);
-
-  setTimeout(function(){
-    document.querySelector(".link_forgot_pass").className = "link_forgot_pass d_none";
-    document.querySelector(".terms_and_cons").className = "terms_and_cons d_block";
-  },450);
-
-}
-
-
-
-function sign_in(){
-  var inputs = document.querySelectorAll(".input_form_sign");
-  document.querySelectorAll(".ul_tabs > li")[0].className = "active"; 
-  document.querySelectorAll(".ul_tabs > li")[1].className = ""; 
-  
-  for(var i = 0; i < inputs.length ; i++ ) {
-    switch(i) {
-    case 1:
-      console.log(inputs[i].name);
-      break;
-    case 2:
-      console.log(inputs[i].name);
-    default: 
-      document.querySelectorAll(".input_form_sign")[i].className = "input_form_sign d_block";
-    }
-  } 
-
-  setTimeout( function(){
-    for(var d = 0; d < inputs.length ; d++ ) {
-      switch(d) {
-      case 1:
-        console.log(inputs[d].name);
-        break;
-      case 2:
-        console.log(inputs[d].name);
-
-      default:
-        document.querySelectorAll(".input_form_sign")[d].className = "input_form_sign d_block";  
-        document.querySelectorAll(".input_form_sign")[2].className = "input_form_sign d_block active_inp";  
-
-      }
-    }
-  },100 );
-
-  document.querySelector(".terms_and_cons").style.opacity = "0";
-  document.querySelector(".terms_and_cons").style.top = "-5px";
-
-  setTimeout(function(){
-    document.querySelector(".terms_and_cons").className = "terms_and_cons d_none"; 
-    document.querySelector(".link_forgot_pass").className = "link_forgot_pass d_block";
-
-  },500);
-
-  setTimeout(function(){
-
-    document.querySelector(".link_forgot_pass").style.opacity = "1";
-    document.querySelector(".link_forgot_pass").style.top = "5px";
-    
-
-    for(var d = 0; d < inputs.length ; d++ ) {
-
-      switch(d) {
-      case 1:
-        console.log(inputs[d].name);
-        break;
-      case 2:
-        console.log(inputs[d].name);
-
-        break;
-      default:
-        document.querySelectorAll(".input_form_sign")[d].className = "input_form_sign";  
-      }
-    }
-  },1500);
-  document.querySelector(".btn_sign").innerHTML = "SIGN IN";    
-}
-
-
-window.onload =function(){
-  document.querySelector(".cont_centrar").className = "cont_centrar cent_active";
-
+// The API object contains methods for each kind of request we'll make
+var API = {
+  saveExample: function(example) {
+    return $.ajax({
+      headers: {
+        "Content-Type": "application/json"
+      },
+      type: "POST",
+      url: "api/examples",
+      data: JSON.stringify(example)
+    });
+  },
+  getExamples: function() {
+    return $.ajax({
+      url: "api/examples",
+      type: "GET"
+    });
+  },
+  deleteExample: function(id) {
+    return $.ajax({
+      url: "api/examples/" + id,
+      type: "DELETE"
+    });
+  }
 };
+
+// refreshExamples gets new examples from the db and repopulates the list
+var refreshExamples = function() {
+  API.getExamples().then(function(data) {
+    var $examples = data.map(function(example) {
+      var $a = $("<a>")
+        .text(example.text)
+        .attr("href", "/example/" + example.id);
+
+      var $li = $("<li>")
+        .attr({
+          class: "list-group-item",
+          "data-id": example.id
+        })
+        .append($a);
+
+      var $button = $("<button>")
+        .addClass("btn btn-danger float-right delete")
+        .text("ｘ");
+
+      $li.append($button);
+
+      return $li;
+    });
+
+    $exampleList.empty();
+    $exampleList.append($examples);
+  });
+};
+
+// handleFormSubmit is called whenever we submit a new example
+// Save the new example to the db and refresh the list
+var handleFormSubmit = function(event) {
+  event.preventDefault();
+
+  var example = {
+    text: $exampleText.val().trim(),
+    description: $exampleDescription.val().trim()
+  };
+
+  if (!(example.text && example.description)) {
+    alert("You must enter an example text and description!");
+    return;
+  }
+
+  API.saveExample(example).then(function() {
+    refreshExamples();
+  });
+
+  $exampleText.val("");
+  $exampleDescription.val("");
+};
+
+// handleDeleteBtnClick is called when an example's delete button is clicked
+// Remove the example from the db and refresh the list
+var handleDeleteBtnClick = function() {
+  var idToDelete = $(this)
+    .parent()
+    .attr("data-id");
+
+  API.deleteExample(idToDelete).then(function() {
+    refreshExamples();
+  });
+};
+
+// Add event listeners to the submit and delete buttons
+$submitBtn.on("click", handleFormSubmit);
+$exampleList.on("click", ".delete", handleDeleteBtnClick);

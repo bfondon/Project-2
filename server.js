@@ -1,32 +1,58 @@
+const db = require("./models");
+const express = require("express");
+const session = require("express-session");
+
 require("dotenv").config();
-var express = require("express");
-var session = require("express-session");
+
 var exphbs = require("express-handlebars");
 var passport = require("./config/passport");
 
-var db = require("./models");
-
-var app = express();
-var PORT = process.env.PORT || 3000;
-
-// Middleware
-app.use(express.urlencoded({ extended: false }));
+const PORT = process.env.PORT || 3000;
+const passport = require("./config/passport");
+const app = express();
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
 
-// Handlebars
-app.engine(
-  "handlebars",
-  exphbs({
-    defaultLayout: "main"
-  })
-);
-app.set("view engine", "handlebars");
-
-//use sessions to keep track of login
-app.use(session({ secret: "keyboard dog", resave: true, saveUninitialized: true }));
+app.use(session({ secret: "10000 hours", resave: true, saveUninitialize:true}))
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.set("view engine", "handlebars");
+
+app.get("/", function(req,res){
+  res.sendFile(__dirname + "/public/landing.html")
+})
+
+app.get("/dashboard", function(req, res){
+  // if(!req.user){
+  //   return res.redirect("/")
+  // }
+  res.sendFile( __dirname + "/views/dashboard.html")
+  // res.send("YOU MADE IT, YOU'RE LOGGED IN! " + req.user.email);
+})
+
+app.get("/logout", function(req, res){
+  req.logout();
+  res.redirect("/");
+})
+
+app.post("/api/login", passport.authenticate("local"), function(req, res){
+  res.redirect(307, '/api/dashboard');
+})
+
+app.post("/api/signup", function(req, res){
+  console.log(req.body);
+  db.User.create(req.body).then(function(response){
+    console.log(response);
+    res.redirect(307, '/api/login')
+  }).catch(function(err){
+    console.log(err);
+    res.status(500).json(err);
+  })
+});
+
+
 
 // Routes
 require("./routes/apiRoutes")(app);
@@ -51,5 +77,3 @@ db.sequelize.sync(syncOptions).then(function () {
     );
   });
 });
-
-module.exports = app;

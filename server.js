@@ -21,6 +21,11 @@ app.engine(
 );
 app.set("view engine", "handlebars");
 
+//use sessions to keep track of login
+app.use(session({ secret: "keyboard dog", resave: true, saveUninitialized: true }));
+app.use(passport.initialize());
+app.use(passport.session());
+
 // Routes
 require("./routes/apiRoutes")(app);
 require("./routes/htmlRoutes")(app);

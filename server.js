@@ -13,6 +13,8 @@ app.use(session({ secret: "10000 hours", resave: true, saveUninitialize:true}))
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.set("view engine", "handlebars");
+
 app.get("/", function(req,res){
   res.sendFile(__dirname + "/public/landing.html")
 })
@@ -43,11 +45,30 @@ app.post("/api/signup", function(req, res){
     console.log(err);
     res.status(500).json(err);
   })
+});
 
-})
 
-db.sequelize.sync({force: true}).then(function(){
-  app.listen(PORT, function(){
-    console.log("Listening on port: " + PORT);
-  })
+
+// Routes
+require("./routes/apiRoutes")(app);
+require("./routes/htmlRoutes")(app);
+
+var syncOptions = { force: true };
+
+// If running a test, set syncOptions.force to true
+// clearing the `testdb`
+if (process.env.NODE_ENV === "test") {
+  syncOptions.force = true;
+}
+
+// Starting the server, syncing our models ------------------------------------/
+db.sequelize.sync(syncOptions).then(function() {
+  console.log(Object.keys(db));
+  app.listen(PORT, function() {
+    console.log(
+      "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
+      PORT,
+      PORT
+    );
+  });
 });

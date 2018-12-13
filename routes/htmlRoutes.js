@@ -1,18 +1,19 @@
 var db = require("../models");
+var path = require("path");
 
 module.exports = function(app) {
+
   app.get("/", function(req, res) {
-    db.User.findAll({}).then(function(results){
-    res.send("Here is our landing page, which is also our login page!");
+    res.sendFile(path.join(__dirname, "../public/landing.html"));
   });
 
 
   app.get("/signup", function(req, res){
-    res.send("Here is our signup page!");
+    res.redirect("/")
   });
 
   app.get("/login", function(req, res){
-    res.send("Here is our login page, this will redirect to the / route!");
+    res.sendFile(path.join(__dirname, "../public/login.html"));
   });
 
 
@@ -20,7 +21,6 @@ module.exports = function(app) {
   app.get("*", function(req, res) {
     res.render("404");
   });
-});
 };
 
 // module.exports = function(app) {

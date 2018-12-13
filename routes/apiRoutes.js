@@ -1,12 +1,32 @@
 var db = require("../models");
 
 module.exports = function(app) {
-  app.get("/api/users", function(req, res) {
-    // db.User.findAll({}).then(function(results){
-    //   res.json(results);
-    res.send("API INFO WILL GO HERE :)");
+  // app.post("/",function(req,res){
+  //   console.log(req.body);
+  //   res.send(200);
+  // })
+  app.post("/api/signup", function(req, res){
+    db.User.create({
+      name: req.body.name,
+      email: req.body.email,
+      password:req.body.password
+    }).then(function(response){
+      console.log(response);
+      // res.redirect(307, "/");
+      res.send(response);
+      res.status(200).end();
+    });
   });
-};
+  
+  
+  
+  app.get("/api/signup", function(req, res) {
+    db.User.findAll({}).then(function(results){
+      console.log(results)
+      res.json(results);
+    });
+  }
+)};
 
 
 

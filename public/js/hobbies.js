@@ -28,32 +28,39 @@ jQuery(document).ready(function($){
 });
 
 //Listen for click event on start/stop timers.
-$("#start-1").on("click", startTimer);
-$("#stop-1").on("click", stopTimer);
+let intervalArr = [null,null,null,null,null];
 
-var time = 0;
+$(".start").on("click",function(){
+    console.log($(this).attr("data-type"));
+    let whichOne = $(this).attr("data-type")
+    console.log("Timer started.");
+    if(intervalArr[whichOne]===null){
+    intervalArr[whichOne] = setInterval(function(){
+        count(whichOne);
+    }, 1000);
+    console.log(intervalArr[whichOne]);
+}
+})
+
+$(".stop").on("click", function() {
+    console.log($(this).attr("data-type"));
+    let whichOneStop = ($(this).attr("data-type"));
+    clearInterval(whichOneStop);
+    reset();
+});
+
+var time = [0,0,0,0,0];
 
 function reset(){
-    time = 0;
-    $("#timer-1").text("00:00");
+    $(".timer").text("00:00");
 };
 
-function startTimer() {
-    console.log("Timer started.");
-    intervalId = setInterval(count, 1000);
-};
+function count(i) {
 
-function stopTimer() {
-    console.log("Timer stopped.");
-    clearInterval(intervalId);
-    reset();
-};
-
-function count() {
-
-    time++;
-    var converted = timeConverter(time);
-    $("#timer-1").text(converted);
+    time[i]++;
+    console.log(i);
+    var converted = timeConverter(time[i]);
+    $("#timer-"+i).text(converted);
 }
 
 function timeConverter(t) {

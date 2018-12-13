@@ -1,6 +1,7 @@
 var db = require("../models");
 var passport = require("../config/passport")
 
+
 module.exports = function(app) {
 
   app.post("/api/login", passport.authenticate("local"), function(req, res) {
@@ -32,6 +33,7 @@ module.exports = function(app) {
   app.get("/api/user_data", function(req, res) {
     if (!req.user){
       res.json({});
+      console.log(res.json({}));
     }
     else {
       res.json({
@@ -40,9 +42,13 @@ module.exports = function(app) {
       });
     }
   });
+  app.get("/api/allUsers", function(req, res) {
+    db.User.findAll({}).then(function(response) {
+      res.json(response);
+
+    })
+  });
 };
-
-
 
 
 // module.exports = function(app) {

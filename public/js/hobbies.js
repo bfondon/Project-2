@@ -27,9 +27,9 @@ jQuery(document).ready(function($){
     }
 });
 
-//Listen for click event on start/stop timers.
+//Timers
 let intervalArr = [null,null,null,null,null];
-
+//Listen for click event on any start button, and start that specific timer when clicked.
 $(".start").on("click",function(){
     console.log($(this).attr("data-type"));
     let whichOne = $(this).attr("data-type")
@@ -41,11 +41,11 @@ $(".start").on("click",function(){
     console.log(intervalArr[whichOne]);
 }
 })
-
+//Listen for click event on any stop button, and stop that specific timer when clicked.
 $(".stop").on("click", function() {
     console.log($(this).attr("data-type"));
     let whichOneStop = ($(this).attr("data-type"));
-    clearInterval(whichOneStop);
+    clearInterval(intervalArr[whichOneStop]);
     reset();
 });
 

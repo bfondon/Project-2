@@ -43,3 +43,6 @@ module.exports = function (sequelize, DataTypes) {
   return User;
 };
 
+//elena password: 2222, id 1, email: fefe3@gmail.com
+//alpha password: test123, id 2, email: alphabeta@chi.com
+//beta password: 3333, id 3, email: betatest@chi.com

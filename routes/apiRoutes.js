@@ -1,33 +1,43 @@
 var db = require("../models");
+var passport = require("../config/passport")
 
 module.exports = function(app) {
-  // app.post("/",function(req,res){
-  //   console.log(req.body);
-  //   res.send(200);
-  // })
+
+  app.post("/api/login", passport.authenticate("local"), function(req, res) {
+    // Since we're doing a POST with javascript, we can't actually redirect that post into a GET request
+    // So we're sending the user back the route to the members page because the redirect will happen on the front end
+    //can't even get here if you're not authorized
+    res.json("/members");
+  });
+
+
   app.post("/api/signup", function(req, res){
     db.User.create({
       name: req.body.name,
       email: req.body.email,
       password:req.body.password
-    }).then(function(response){
-      console.log(response);
-      // res.redirect(307, "/");
-      res.send(response);
-      res.status(200).end();
+    }).then(function() {
+      res.redirect(307, "/api/login");
+    }).catch(function(err) {
+      console.log(err);
+      res.json(err);
     });
   });
   
   
   
-  app.get("/api/signup", function(req, res) {
-    db.User.findAll({}).then(function(results){
-      console.log(results)
-      res.json(results);
-    });
-  }
-)};
-
+  app.get("/api/user_data", function(req, res) {
+    if (!req.user){
+      res.json({});
+    }
+    else {
+      res.json({
+        email: req.user.email,
+        id: req.user.id
+      });
+    }
+  });
+};
 
 
 

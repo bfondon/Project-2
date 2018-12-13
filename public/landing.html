@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Sign in and Sign up - Single Form</title>
+  <title>Sign up</title>
 
 
   <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,300,600'>
@@ -11,54 +11,44 @@
   <link rel="stylesheet" href="styles/style.css">
   <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
     crossorigin="anonymous"></script>
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
 </head>
 
 <body>
-
-  <!-- <div class="cont_principal">
-
-    <div class="cont_centrar">
-      <div class="cont_login">
-        <form action="/api/sign">
-          <div class="cont_tabs_login">
-            <ul class='ul_tabs'>
-              <li class="active"><a href="#" onclick="sign_in()">SIGN IN</a>
-                <span class="linea_bajo_nom"></span>
-              </li>
-              <li><a href="#up" onclick="sign_up()">SIGN UP</a><span class="linea_bajo_nom"></span>
-              </li>
-            </ul>
-          </div>
-          <div class="cont_text_inputs">
-            <input type="text" class="input_form_sign " placeholder="NAME" name="name_us" id="name" />
-
-            <input type="text" class="input_form_sign d_block active_inp" placeholder="EMAIL" name="emauil_us" id="email" />
-
-            <input type="password" class="input_form_sign d_block  active_inp" placeholder="PASSWORD" name="pass_us" id="password" />
-
-            <a href="#" class="link_forgot_pass d_block">Forgot Password ?</a>
-          </div>
-          <div class="cont_btn">
-            <button id="submit" class="btn_sign">SIGN IN</button>
-
-          </div>
-
-        </form>
-      </div>
-
+  <div class="container">
+    <div class="row">
+      <h1 style="text-align: center">ASDFASDFASDFASDF</h1>
+      <h5 style="text-align: center">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magni soluta laborum
+        enim omnis ducimus harum tenetur qui excepturi iste eveniet placeat earum in modi porro, perspiciatis ex ipsa
+        quo aliquam.</h5>
     </div>
-
-
-  </div> -->
-
-  <form id="form">
-    <input id="name" placeholder="name">
-    <input id="email" placeholder="enter email">
-    <input id="password" placeholder="enter password">
-    <button id="submit">Submit</button>
-  </form>
-
+    <div class="row">
+      <form class="col s12">
+        <div class="row">
+          <div class="input-field col s6">
+            <input placeholder="Name" id="name" type="text" class="validate">
+            <label for="first_name">Name</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="email" type="email" class="validate">
+            <label for="email">Email</label>
+          </div>
+          <div class="input-field col s12">
+            <input id="password" type="password" class="validate">
+            <label for="password">Password</label>
+          </div>
+          <button id="submit" class="waves-effect waves-light btn">button</button>
+        </div>
+      </form>
+    </div>
+  </div>
   <script type="text/javascript" src="./js/index.js"></script>
 
 </body>

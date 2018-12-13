@@ -1,7 +1,7 @@
 require("dotenv").config();
 var express = require("express");
 var session = require("express-session");
-var exphbs = require("express-handlebars");
+// var exphbs = require("express-handlebars");
 var passport = require("./config/passport");
 
 var db = require("./models");
@@ -15,13 +15,13 @@ app.use(express.json());
 app.use(express.static("public"));
 
 // Handlebars
-app.engine(
-  "handlebars",
-  exphbs({
-    defaultLayout: "main"
-  })
-);
-app.set("view engine", "handlebars");
+// app.engine(
+//   "handlebars",
+//   exphbs({
+//     defaultLayout: "main"
+//   })
+// );
+// app.set("view engine", "handlebars");
 
 //use sessions to keep track of login
 app.use(session({ secret: "keyboard dog", resave: true, saveUninitialized: true }));

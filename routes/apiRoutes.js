@@ -5,6 +5,7 @@ var passport = require("../config/passport")
 module.exports = function(app) {
 
   app.post("/api/login", passport.authenticate("local"), function(req, res) {
+    console.log("in login")
     // Since we're doing a POST with javascript, we can't actually redirect that post into a GET request
     // So we're sending the user back the route to the members page because the redirect will happen on the front end
     //can't even get here if you're not authorized
@@ -13,11 +14,13 @@ module.exports = function(app) {
 
 
   app.post("/api/signup", function(req, res){
+    console.log("before user")
     db.User.create({
       name: req.body.name,
       email: req.body.email,
       password:req.body.password
     }).then(function() {
+      console.log("after user");
       res.redirect(307, "/api/login");
     }).catch(function(err) {
       console.log(err);

@@ -9,6 +9,7 @@ $(document).on("click","#submit",function(event){
 }
   $.post("/api/signup", body).then(function () {
     console.log("submitted")
+    window.location.replace("/members")
 })
 
 });

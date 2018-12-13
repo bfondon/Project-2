@@ -4,8 +4,8 @@ const session = require("express-session");
 
 require("dotenv").config();
 
+
 var exphbs = require("express-handlebars");
-var passport = require("./config/passport");
 
 const PORT = process.env.PORT || 3000;
 const passport = require("./config/passport");
@@ -14,6 +14,15 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
 
+// Handlebars
+app.engine(
+  "handlebars",
+  exphbs({
+    defaultLayout: "main"
+  })
+);
+
+//use sessions to keep track of login
 app.use(session({ secret: "10000 hours", resave: true, saveUninitialize:true}))
 app.use(passport.initialize());
 app.use(passport.session());
@@ -37,9 +46,9 @@ app.get("/logout", function(req, res){
   res.redirect("/");
 })
 
-app.post("/api/login", passport.authenticate("local"), function(req, res){
-  res.redirect(307, '/api/dashboard');
-})
+// app.post("/api/login", passport.authenticate("local"), function(req, res){
+//   res.redirect(307, '/api/dashboard');
+// })
 
 app.post("/api/signup", function(req, res){
   console.log(req.body);

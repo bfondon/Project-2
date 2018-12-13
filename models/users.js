@@ -21,13 +21,13 @@ module.exports = function (sequelize, DataTypes) {
     username: DataTypes.STRING,
     discipline1: DataTypes.STRING,
     subdiscipline1: DataTypes.STRING,
-    subD1Hours: DataTypes.INTEGER,
+    subD1Hours: DataTypes.DECIMAL,
     subdiscipline2: DataTypes.STRING,
-    subD2Hours: DataTypes.INTEGER,
+    subD2Hours: DataTypes.DECIMAL,
     subdiscipline3: DataTypes.STRING,
-    subD3Hours: DataTypes.INTEGER,
-    totalHours: DataTypes.INTEGER,
-    longestSession: DataTypes.INTEGER,
+    subD3Hours: DataTypes.DECIMAL,
+    totalHours: DataTypes.DECIMAL,
+    longestSession: DataTypes.DECIMAL,
     longestStreak: DataTypes.INTEGER,
     currentStreak: DataTypes.INTEGER
   });

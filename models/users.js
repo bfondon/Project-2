@@ -21,13 +21,13 @@ module.exports = function (sequelize, DataTypes) {
     username: DataTypes.STRING,
     discipline1: DataTypes.STRING,
     subdiscipline1: DataTypes.STRING,
-    subD1Hours: DataTypes.INTEGER,
+    subD1Hours: DataTypes.DECIMAL,
     subdiscipline2: DataTypes.STRING,
-    subD2Hours: DataTypes.INTEGER,
+    subD2Hours: DataTypes.DECIMAL,
     subdiscipline3: DataTypes.STRING,
-    subD3Hours: DataTypes.INTEGER,
-    totalHours: DataTypes.INTEGER,
-    longestSession: DataTypes.INTEGER,
+    subD3Hours: DataTypes.DECIMAL,
+    totalHours: DataTypes.DECIMAL,
+    longestSession: DataTypes.DECIMAL,
     longestStreak: DataTypes.INTEGER,
     currentStreak: DataTypes.INTEGER
   });
@@ -43,3 +43,6 @@ module.exports = function (sequelize, DataTypes) {
   return User;
 };
 
+//elena password: 2222, id 1, email: fefe3@gmail.com
+//alpha password: test123, id 2, email: alphabeta@chi.com
+//beta password: 3333, id 3, email: betatest@chi.com

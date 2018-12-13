@@ -32,9 +32,9 @@ module.exports = function (sequelize, DataTypes) {
     currentStreak: DataTypes.INTEGER
   });
 
-  User.prototype.validPassword = function(password) {
+  User.prototype.validPassword(function(password) {
     return bcrypt.compareSync(password, this.password);
-  };
+  });
 
   User.hook("beforeCreate", function(user) {
     user.password = bcrypt.hashSync(user.password,

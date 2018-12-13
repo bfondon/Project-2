@@ -1,7 +1,7 @@
 module.exports = function (sequelize, DataTypes) {
-  var timeLog = sequelize.define("timeLog", {
+  var friends = sequelize.define("friends", {
     friend1: DataTypes.STRING,
     friend2: DataTypes.STRING,
   });
-  return timeLog;
+  return friends;
 };

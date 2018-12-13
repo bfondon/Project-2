@@ -21,7 +21,7 @@ app.get("/dashboard", function(req, res){
   // if(!req.user){
   //   return res.redirect("/")
   // }
-  res.sendFile( __dirname + "/views/dashboard.html")
+  res.sendFile( __dirname + "/views/dashboard.handlebars")
   // res.send("YOU MADE IT, YOU'RE LOGGED IN! " + req.user.email);
 })
 

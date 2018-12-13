@@ -1,47 +1,53 @@
-require("dotenv").config();
-var express = require("express");
-var exphbs = require("express-handlebars");
+const db = require("./models");
+const express = require("express");
+const session = require("express-session");
 
-var db = require("./models");
-
-var app = express();
-var PORT = process.env.PORT || 3000;
-
-// Middleware
-app.use(express.urlencoded({ extended: false }));
+const PORT = process.env.PORT || 3000;
+const passport = require("./config/passport");
+const app = express();
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
 
-// Handlebars
-app.engine(
-  "handlebars",
-  exphbs({
-    defaultLayout: "main"
+app.use(session({ secret: "10000 hours", resave: true, saveUninitialize:true}))
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.get("/", function(req,res){
+  res.sendFile(__dirname + "/public/landing.html")
+})
+
+app.get("/dashboard", function(req, res){
+  // if(!req.user){
+  //   return res.redirect("/")
+  // }
+  res.sendFile( __dirname + "/views/dashboard.html")
+  // res.send("YOU MADE IT, YOU'RE LOGGED IN! " + req.user.email);
+})
+
+app.get("/logout", function(req, res){
+  req.logout();
+  res.redirect("/");
+})
+
+app.post("/api/login", passport.authenticate("local"), function(req, res){
+  res.redirect(307, '/api/dashboard');
+})
+
+app.post("/api/signup", function(req, res){
+  console.log(req.body);
+  db.User.create(req.body).then(function(response){
+    console.log(response);
+    res.redirect(307, '/api/login')
+  }).catch(function(err){
+    console.log(err);
+    res.status(500).json(err);
   })
-);
-app.set("view engine", "handlebars");
 
-// Routes
-require("./routes/apiRoutes")(app);
-require("./routes/htmlRoutes")(app);
+})
 
-var syncOptions = { force: false };
-
-// If running a test, set syncOptions.force to true
-// clearing the `testdb`
-if (process.env.NODE_ENV === "test") {
-  syncOptions.force = true;
-}
-
-// Starting the server, syncing our models ------------------------------------/
-db.sequelize.sync(syncOptions).then(function() {
-  app.listen(PORT, function() {
-    console.log(
-      "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
-      PORT,
-      PORT
-    );
-  });
+db.sequelize.sync({force: true}).then(function(){
+  app.listen(PORT, function(){
+    console.log("Listening on port: " + PORT);
+  })
 });
-
-module.exports = app;

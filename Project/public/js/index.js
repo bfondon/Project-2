@@ -4,13 +4,15 @@ function sign_up(){
   document.querySelectorAll(".ul_tabs > li")[1].className="active"; 
   
   for(var i = 0; i < inputs.length ; i++ ) {
-    if(i == 2 ){
+    if(i == 2 ){ 
 
     }else{  
       document.querySelectorAll(".input_form_sign")[i].className = "input_form_sign d_block";
     }
   } 
-  
+
+
+
   setTimeout( function(){
     for(var d = 0; d < inputs.length ; d++ ) {
       document.querySelectorAll(".input_form_sign")[d].className = "input_form_sign d_block active_inp";  
@@ -27,6 +29,7 @@ function sign_up(){
     document.querySelector(".terms_and_cons").style.top = "5px";
  
   },500);
+
   setTimeout(function(){
     document.querySelector(".link_forgot_pass").className = "link_forgot_pass d_none";
     document.querySelector(".terms_and_cons").className = "terms_and_cons d_block";

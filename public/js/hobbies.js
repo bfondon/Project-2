@@ -25,6 +25,9 @@ jQuery(document).ready(function($){
 			}
 		})
     }
+    $.get("/api/allUsers", function(data){
+        console.log(data);
+    })
 });
 
 //Timers
@@ -81,3 +84,4 @@ function timeConverter(t) {
   
     return minutes + ":" + seconds;
   };
+

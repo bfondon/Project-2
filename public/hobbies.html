@@ -1,172 +1,176 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <title>Disciplines</title>
+	<meta charset="UTF-8">
+	<title>Disciplines</title>
 	<!-- Link to JQuery CDN -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
-<meta name="viewport" content="width=device-width">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+	<meta name="viewport" content="width=device-width">
 	<!-- Link to Bootstrap CDN -->
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	 crossorigin="anonymous">
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+	 crossorigin="anonymous"></script>
 	<!-- Link to CSS Stylesheet -->
-      <link rel="stylesheet" href="styles/hobbies.css">
+	<link rel="stylesheet" href="styles/hobbies.css">
+	<link rel="stylesheet" href="styles/style.css">
 
 </head>
 
 <body>
 
-		<a class="navbar-brand" href="#">Navbar</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-		  <span class="navbar-toggler-icon"></span>
-		</button>
-		<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-		  <div class="navbar-nav">
+	<a class="navbar-brand" href="#">Navbar</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
+	 aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+		<div class="navbar-nav">
 			<a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
 			<a class="nav-item nav-link" href="#">Features</a>
 			<a class="nav-item nav-link" href="#">Pricing</a>
 			<a class="nav-item nav-link disabled" href="#">Disabled</a>
-		  </div>
 		</div>
-	   </nav>
+	</div>
+	</nav>
 
 	<!-- Containers displaying Table Data -->
-  	<div class="discipline-container">
-			<p class="fieldset">
-			</p>
-		</div>
-		<ul class="discipline-list bounce-invert">
-			<li>
-				<ul class="discipline-wrapper">
-					<li data-type="monthly" class="is-visible">
-						<header class="discipline-header">
-							<h2>Discipline 1</h2>
-							<div class="price">
-								<span class="value">4,124</span>
-								<span class="duration">hrs</span>
-							</div>
-						</header>
-						<div class="discipline-body">
-							<ul class="discipline-features">
-								<li> Some Stuff</li>
-								<li> Could Go</li>
-								<li> Here</li>						
-							</ul>
-							<div class="timer" id ="timer-0">00:00</div>
+	<div class="discipline-container">
+		<p class="fieldset">
+		</p>
+	</div>
+	<ul class="discipline-list bounce-invert">
+		<li>
+			<ul class="discipline-wrapper">
+				<li data-type="monthly" class="is-visible">
+					<header class="discipline-header">
+						<h2>Discipline 1</h2>
+						<div class="price">
+							<span class="value">4,124</span>
+							<span class="duration">hrs</span>
 						</div>
-						<footer class="discipline-footer">
-							<a id="start-1" class="start" data-type="0" href="#">Start Timer</a>
-							<a id="stop-1" class="stop" data-type="0" href="#">Stop Timer</a>
-						</footer>
-					</li>
-				</ul>
-			</li>
-			<li>
-				<ul class="discipline-wrapper">
-					<li data-type="monthly" class="is-visible">
-						<header class="discipline-header">
-							<h2>Discipline 2</h2>
-							<div class="price">
-								<span class="value">373</span>
-								<span class="duration">hrs</span>
-							</div>
-						</header>
-						<div class="discipline-body">
-							<ul class="discipline-features">
-								<li> Some Stuff</li>
-								<li> Could Go</li>
-								<li> Here</li>
-							</ul>
-							<div class="timer" id ="timer-1">00:00</div>
+					</header>
+					<div class="discipline-body">
+						<ul class="discipline-features">
+							<li> Last Session: </li>
+							<li> Date</li>
+							<li> Hours</li>
+						</ul>
+						<div class="timer" id="timer-0">00:00</div>
+					</div>
+					<footer class="discipline-footer">
+						<a id="start-1" class="start" data-type="0" href="#">Start Timer</a>
+						<a id="stop-1" class="stop" data-type="0" href="#">Stop Timer</a>
+					</footer>
+				</li>
+			</ul>
+		</li>
+		<li>
+			<ul class="discipline-wrapper">
+				<li data-type="monthly" class="is-visible">
+					<header class="discipline-header">
+						<h2>Discipline 2</h2>
+						<div class="price">
+							<span class="value">373</span>
+							<span class="duration">hrs</span>
 						</div>
-						<footer class="discipline-footer">
-							<a id="start-2" class="start" data-type="1" href="#">Start Timer</a>
-							<a id="stop-2" class="stop" data-type="1"  href="#">Stop Timer</a>
-						</footer>
-					</li>
-				</ul>
-			</li>
-			<li>
-				<ul class="discipline-wrapper">
-					<li data-type="monthly" class="is-visible">
-						<header class="discipline-header">
-							<h2>Discipline 3</h2>
-							<div class="price">
-								<span class="value">2</span>
-								<span class="duration">hrs</span>
-							</div>
-						</header>
-						<div class="discipline-body">
-							<ul class="discipline-features">
-								<li> Some Stuff</li>
-								<li> Could Go</li>
-								<li> Here</li>
-							</ul>
+					</header>
+					<div class="discipline-body">
+						<ul class="discipline-features">
+							<li> Last Session: </li>
+							<li> Date</li>
+							<li> Hours</li>
+						</ul>
+						<div class="timer" id="timer-1">00:00</div>
+					</div>
+					<footer class="discipline-footer">
+						<a id="start-2" class="start" data-type="1" href="#">Start Timer</a>
+						<a id="stop-2" class="stop" data-type="1" href="#">Stop Timer</a>
+					</footer>
+				</li>
+			</ul>
+		</li>
+		<li>
+			<ul class="discipline-wrapper">
+				<li data-type="monthly" class="is-visible">
+					<header class="discipline-header">
+						<h2>Discipline 3</h2>
+						<div class="price">
+							<span class="value">2</span>
+							<span class="duration">hrs</span>
+						</div>
+					</header>
+					<div class="discipline-body">
+						<ul class="discipline-features">
+							<li> Last Session: </li>
+							<li> Date</li>
+							<li> Hours</li>
+						</ul>
 						<div class="timer" id="timer-2">00:00</div>
+					</div>
+					<footer class="discipline-footer">
+						<a id="start-3" class="start" data-type="2" href="#">Start Timer</a>
+						<a id="stop-3" class="stop" data-type="2" href="#">Stop Timer</a>
+					</footer>
+			</ul>
+		</li>
+		<li>
+			<ul class="discipline-wrapper">
+				<li data-type="monthly" class="is-visible">
+					<header class="discipline-header">
+						<h2>Discipline 4</h2>
+						<div class="price">
+							<span class="value">9,999</span>
+							<span class="duration">hrs</span>
 						</div>
-						<footer class="discipline-footer">
-							<a id="start-3" class="start" data-type="2" href="#">Start Timer</a>
-							<a id="stop-3" class="stop" data-type="2" href="#">Stop Timer</a>
-						</footer>
-				</ul>
-			</li>
-			<li>
-				<ul class="discipline-wrapper">
-					<li data-type="monthly" class="is-visible">
-						<header class="discipline-header">
-							<h2>Discipline 4</h2>
-							<div class="price">
-								<span class="value">9,999</span>
-								<span class="duration">hrs</span>
-							</div>
-						</header>
-						<div class="discipline-body">
-							<ul class="discipline-features">
-								<li> Some Stuff</li>
-								<li> Could Go</li>
-								<li> Here</li>						
-							</ul>
-							<div class="timer" id ="timer-3">00:00</div>
+					</header>
+					<div class="discipline-body">
+						<ul class="discipline-features">
+							<li> Last Session: </li>
+							<li> Date</li>
+							<li> Hours</li>
+						</ul>
+						<div class="timer" id="timer-3">00:00</div>
+					</div>
+					<footer class="discipline-footer">
+						<a id="start-4" class="start" data-type="3" href="#">Start Timer</a>
+						<a id="stop-4" class="stop" data-type="3" href="#">Stop Timer</a>
+					</footer>
+				</li>
+			</ul>
+		</li>
+		<li>
+			<ul class="discipline-wrapper">
+				<li data-type="monthly" class="is-visible">
+					<header class="discipline-header">
+						<h2>Discipline 5</h2>
+						<div class="price">
+							<span class="value">12</span>
+							<span class="duration">hrs</span>
 						</div>
-						<footer class="discipline-footer">
-							<a id="start-4" class="start" data-type="3" href="#">Start Timer</a>
-							<a id="stop-4" class="stop" data-type="3" href="#">Stop Timer</a>
-						</footer>
-					</li>
-				</ul>
-			</li>
-			<li>
-				<ul class="discipline-wrapper">
-					<li data-type="monthly" class="is-visible">
-						<header class="discipline-header">
-							<h2>Discipline 5</h2>
-							<div class="price">
-								<span class="value">12</span>
-								<span class="duration">hrs</span>
-							</div>
-						</header>
-						<div class="discipline-body">
-							<ul class="discipline-features">
-								<li> Some Stuff</li>
-								<li> Could Go</li>
-								<li> Here</li>						
-							</ul>
-							<div class="timer" id ="timer-4">00:00</div>
-						</div>
-						<footer class="discipline-footer">
-							<a id="start-5" class="start" data-type="4" href="#">Start Timer</a>
-							<a id="stop-5" class="stop" data-type="4" href="#">Stop Timer</a>
-						</footer>
-					</li>
-				</ul>
-			</li>
-		</ul>
-  <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+					</header>
+					<div class="discipline-body">
+						<ul class="discipline-features">
+							<li> Last Session: </li>
+							<li> Date</li>
+							<li> Hours</li>
+						</ul>
+						<div class="timer" id="timer-4">00:00</div>
+					</div>
+					<footer class="discipline-footer">
+						<a id="start-5" class="start" data-type="4" href="#">Start Timer</a>
+						<a id="stop-5" class="stop" data-type="4" href="#">Stop Timer</a>
+					</footer>
+				</li>
+			</ul>
+		</li>
+	</ul>
+	<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 
-<script src="js/hobbies.js"></script>
+	<script src="js/hobbies.js"></script>
 </body>
 
 </html>

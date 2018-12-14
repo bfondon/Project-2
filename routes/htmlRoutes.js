@@ -48,6 +48,13 @@ module.exports = function(app) {
       });
   })
   
+  app.get("/hobbies", function(req, res){
+    if(!req.user){
+      return res.redirect("/")
+    }
+    res.sendFile(path.join(__dirname, "../public/hobbies.html"))
+  });
+  
   // Render 404 page for any unmatched routes
   app.get("*", function(req, res) {
     res.sendFile(path.join(__dirname, "../public/404.html"));

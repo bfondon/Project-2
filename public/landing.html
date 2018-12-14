@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Sign up</title>
+  <title>10,000 Hours</title>
 
 
   <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,300,600'>
@@ -20,31 +20,48 @@
 </head>
 
 <body>
-  <div class="container">
+  <div id = "home-page-container" class="container">
     <div class="row">
-      <h1 style="text-align: center">ASDFASDFASDFASDF</h1>
-      <h5 style="text-align: center">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magni soluta laborum
-        enim omnis ducimus harum tenetur qui excepturi iste eveniet placeat earum in modi porro, perspiciatis ex ipsa
-        quo aliquam.</h5>
+      <h1 style="text-align: center">10,000 Hour Challenge</h1>
+      <h5 style="text-align: center">Can you make it from beginner to master?</h5>
     </div>
     <div class="row">
-      <form class="col s12">
+      <form id = "login-div" class="col s12">
         <div class="row">
           <div class="input-field col s6">
-            <input placeholder="Name" id="name" type="text" class="validate">
-            <label for="first_name">Name</label>
+            <input id="email" type="email" class="validate">
+            <label for="email">Email</label>
+          </div>
+          <div class="input-field col s6">
+            <input id="password" type="password" class="validate">
+            <label for="password">Password</label>
+          </div>
+          <button id="login_submit" class="waves-effect waves-light btn">Log In</button>
+        </div>
+      </form>
+    </div>
+    <div class="row">
+      <form id = "sign-up-div" class="col s12">
+        <div class="row">
+          <div class="input-field col s6">
+            <input id="name" type="text" class="validate">
+            <label for="first_name">Name:</label>
+          </div>
+          <div class="input-field col s6">
+            <input id="discipline" type="text" class="validate">
+            <label for="discipline">Learning:</label>
           </div>
         </div>
         <div class="row">
           <div class="input-field col s12">
             <input id="email" type="email" class="validate">
-            <label for="email">Email</label>
+            <label for="email">Email:</label>
           </div>
           <div class="input-field col s12">
             <input id="password" type="password" class="validate">
-            <label for="password">Password</label>
+            <label for="password">Password:</label>
           </div>
-          <button id="submit" class="waves-effect waves-light btn">button</button>
+          <button id="submit" class="waves-effect waves-light btn">Sign Up</button>
         </div>
       </form>
     </div>

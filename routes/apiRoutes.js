@@ -12,6 +12,15 @@ module.exports = function(app) {
     res.json("/members");
   });
 
+  app.post("/api/habits", function(req, res){
+    db.Habits.create({
+      habitname: req.body.habitname,
+      goal: req.body.goal,
+      achieved: req.body.achieved
+    }).then(function(){
+      console.log("added one more habit.")
+    })
+  })
 
   app.post("/api/signup", function(req, res){
     console.log("before user")
@@ -42,6 +51,7 @@ module.exports = function(app) {
       });
     }
   });
+
   app.get("/api/allUsers", function(req, res) {
     db.User.findAll({}).then(function(response) {
       res.json(response);

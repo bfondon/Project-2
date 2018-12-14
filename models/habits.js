@@ -1,8 +1,8 @@
 module.exports = function(sequelize, DataTypes) {
-  var habit = sequelize.define("habit", {
+  var Habits = sequelize.define("Habits", {
     habitname: DataTypes.STRING,
-    goal: DataTypes.STRING,
-    achieved: DataTypes.STRING
+    goal: DataTypes.INTEGER,
+    achieved: DataTypes.INTEGER
   });
-  return habit;
+  return Habits;
 };

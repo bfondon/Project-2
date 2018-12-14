@@ -1,8 +1,9 @@
 
+
     <div class="dashboard">
         <div class="heading">
             <img src="" alt="">
-            <p>{{username}},welcome to 10000 challenge</p>
+            <p>{{userFullName}},welcome to 10000 challenge</p>
         </div>
 {{!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
  <a class="navbar-brand" href="#">Navbar</a>
@@ -29,72 +30,13 @@
                 </div>
                 <br>
                 <div class="habits">
-                    <div id="habit1">{{habit}}
-                        <p>goal:{{goal}} </p>
-                        <p>achieved so far:{{achieved}}</p>
-                    </div>
-                    <div id="habit2">habit2
-                        <p>goal</p>
-                        <p>achieved so far</p>
-                    </div>
-                    <div id="habit3">habit3
-                            <p>goal</p>
-                            <p>achieved so far</p>
-                    </div>                    
-                </div>
-            </div>
-            
-        </div>
-    </div>
 
-
-
-{{!-- -------------------------------------------------------}}
-
-
-
-    <div class="dashboard">
-        <div class="heading">
-            <img src="" alt="">
-            <p>{{username}},welcome to 10000 challenge</p>
-        </div>
-{{!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
- <a class="navbar-brand" href="#">Navbar</a>
- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-   <span class="navbar-toggler-icon"></span>
- </button>
- <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-   <div class="navbar-nav">
-     <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-     <a class="nav-item nav-link" href="#">Features</a>
-     <a class="nav-item nav-link" href="#">Pricing</a>
-     <a class="nav-item nav-link disabled" href="#">Disabled</a>
-   </div>
- </div>
-</nav> --}}
-        <div class="container">
-            <div class ="col-8 offet-2">
-                <div class="add-button">
-                <button id="addButton" >+</button>
-                <span>add habit</span>
-                <input type="text" id="habitname">
-                <input type="text" id="goal">
-                <input type="text" id="achieved">
-                </div>
-                <br>
-                <div class="habits">
-                    <div id="habit1">{{habit}}
-                        <p>goal:{{goal}} </p>
-                        <p>achieved so far:{{achieved}}</p>
-                    </div>
-                    <div id="habit2">habit2
-                        <p>goal</p>
-                        <p>achieved so far</p>
-                    </div>
-                    <div id="habit3">habit3
-                            <p>goal</p>
-                            <p>achieved so far</p>
-                    </div>                    
+                      {{#each allHabits}}
+                        <p>Habit: <div id="habit{{id}}">{{habitname}}</p>
+                            <p>Goal:{{goal}} </p>
+                            <p>Achieved so far:{{achieved}}</p>
+                        </div>
+                    {{/each}}
                 </div>
             </div>
             

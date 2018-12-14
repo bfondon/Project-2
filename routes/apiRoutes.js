@@ -24,7 +24,7 @@ module.exports = function(app) {
     }).then(function(){
       console.log("added one more habit.")
     })
-  })
+  });
 
   app.post("/api/signup", function(req, res){
     console.log("before user")
@@ -41,6 +41,10 @@ module.exports = function(app) {
     });
   });
   
+  app.get("/logout", function(req, res){
+    req.logout();
+    res.redirect("/");
+  });
   
   
   app.get("/api/user_data", function(req, res) {

@@ -33,14 +33,6 @@ app.get("/", function(req,res){
   res.sendFile(__dirname + "/public/landing.html")
 })
 
-app.get("/dashboard", function(req, res){
-  // if(!req.user){
-  //   return res.redirect("/")
-  // }
-  res.sendFile( __dirname + "/views/dashboard.html")
-  // res.send("YOU MADE IT, YOU'RE LOGGED IN! " + req.user.email);
-})
-
 app.get("/logout", function(req, res){
   req.logout();
   res.redirect("/");

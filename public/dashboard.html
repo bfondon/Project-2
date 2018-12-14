@@ -48,65 +48,67 @@
             </div>
         </div>
         <div id="walcome-bar">
-                <img src="" alt="">
-                <p><span>name,</span> welcome to 10000 challenge</p>
+            <img src="" alt="">
+            <p><span>name, </span> welcome to 10000 challenge</p>
         </div>
     </nav>
     <div class="dashboard">
 
 
 
-<div class="container">
-    <div class="col-8 offet-2">
-        <div class="row">
-            <div class="col-lg-6">
-                <div class="add-button">
-                    <button id="addButton">+</button>
-                    <span>add habit</span><br>
-                    <label for="habitname">habitname:</label>
-                    <input type="text" id="habitname"><br>
-                    <label for="goal">goal:</label>
-                    <input type="text" id="goal"><br>
-                    <label for="achieved">achieved:</label>
-                    <input type="text" id="achieved">
-                </div>
-                <br>
+        <div class="container">
+            
+            <div class="col-8 offet-2">
                 <div class="row">
-                    <div class="col-lg-12">
-                        <div class="habits">
-                            <div id="habit1">
-                                <h3>running</h3>
-                                <p>goal: 5000hrs</p>
-                                <p>achieved so far: 3000hrs</p>
-                            </div>
+                    <div class="col-lg-6">
+                        <div class="add-button">
+                            <button id="addButton">+</button>
+                            <span>add habit</span><br>
+                            <label for="habitname">habitname:</label>
+                            <input type="text" id="habitname"><br>
+                            <label for="goal">goal:</label>
+                            <input type="text" id="goal"><br>
+                            <label for="achieved">achieved:</label>
+                            <input type="text" id="achieved">
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="habits">
+                                    <div id="habit1">
+                                        <h3>running</h3>
+                                        <p>goal: 5000hrs</p>
+                                        <p>achieved so far: 3000hrs</p>
+                                    </div>
 
-                            <div class="card-body">
-                                <div class="progress-box progress-1">
-                                    <h4 class="por-title">Achieved so far</h4>
-                                    <div class="por-txt">3000 hrs (60%)</div>
-                                    <div class="progress mb-2" style="height: 5px;">
-                                        <div class="progress-bar bg-flat-color-1" role="progressbar" style="width: 60%;"
-                                            aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                    <div class="card-body">
+                                        <div class="progress-box progress-1">
+                                            <h4 class="por-title">Achieved so far</h4>
+                                            <div class="por-txt">3000 hrs (60%)</div>
+                                            <div class="progress mb-2" style="height: 5px;">
+                                                <div class="progress-bar bg-flat-color-1" role="progressbar" style="width: 60%;"
+                                                    aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                        </div>
+                                        <div class="progress-box progress-2">
+                                            <h4 class="por-title">Bounce Rate</h4>
+                                            <div class="por-txt">3,220 Users (24%)</div>
+                                            <div class="progress mb-2" style="height: 5px;">
+                                                <div class="progress-bar bg-flat-color-2" role="progressbar" style="width: 24%;"
+                                                    aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                        </div>
+
                                     </div>
                                 </div>
-                                <div class="progress-box progress-2">
-                                    <h4 class="por-title">Bounce Rate</h4>
-                                    <div class="por-txt">3,220 Users (24%)</div>
-                                    <div class="progress mb-2" style="height: 5px;">
-                                        <div class="progress-bar bg-flat-color-2" role="progressbar" style="width: 24%;"
-                                            aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </div>
-
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
 
-</div>
+
+        </div>
     </div>
 
 
@@ -120,7 +122,7 @@
                 goal: $("#goal").val().trim(),
                 achieved: $("#achieved").val().trim()
             }
-            
+
             console.log(newHabit);
 
             $.ajax("/api/habits", {
@@ -140,7 +142,6 @@
 
 
         });
-
     </script>
 </body>
 

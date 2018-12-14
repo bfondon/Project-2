@@ -13,10 +13,14 @@ module.exports = function(app) {
   });
 
   app.post("/api/habits", function(req, res){
+    if(!req.user){
+      return res.redirect("/")
+    }
     db.Habits.create({
       habitname: req.body.habitname,
       goal: req.body.goal,
-      achieved: req.body.achieved
+      achieved: req.body.achieved,
+      UserId: req.user.id
     }).then(function(){
       console.log("added one more habit.")
     })

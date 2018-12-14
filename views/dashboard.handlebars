@@ -25,8 +25,8 @@
                 <button id="addButton" >+</button>
                 <span>add habit</span>
                 <input type="text" id="habitname">
-                <input type="text" id="goal">
-                <input type="text" id="achieved">
+                Goal <input type="text" id="goal">
+                Achieved <input type="text" id="achieved">
                 </div>
                 <br>
                 <div class="habits">
@@ -42,9 +42,34 @@
             
         </div>
     </div>
-    <script>
-        $("#addButton").click(function(e){
+ <script>
+        $("#addButton").click(function (e) {
             e.preventDefault();
-            $.post("/api/")
-        })
+
+            var newHabit = {
+                habitname: $("#habitname").val().trim(),
+                goal: $("#goal").val().trim(),
+                achieved: $("#achieved").val().trim()
+            }
+            
+            console.log(newHabit);
+
+            $.ajax("/api/habits", {
+                type: "POST",
+                data: newHabit
+            }).then(function (res) {
+                console.log("habit added.")
+                // var div = $("<div>");
+                // div.attr("id", "res.???");
+                // div.text(res.habitname);
+                // div.append("<p>" + res.goal  + "</p>");
+                // div.append("<p>" + res.achieved + "</p>");
+                // $(".habits").append(div);
+                // console.log("created new habit");
+                // location.reload();
+            })
+
+
+        });
+
     </script>

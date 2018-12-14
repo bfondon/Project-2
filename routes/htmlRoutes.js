@@ -29,24 +29,23 @@ module.exports = function(app) {
   })
 
   app.get("/dashboard", function(req, res){
-    // if(!req.user){
-    //   return res.redirect("/")
-    // }
-    db.Habits.findAll(/*{
+    if(!req.user){
+      return res.redirect("/")
+    }
+    console.log("current user: " + req.user.name);
+    db.Habits.findAll({
        where: {
-        userId: req.user.id
+        UserId: req.user.id
       }
-    }*/)
+    })
       .then(function(data) {
         var hbsObject = {
-          // userFullName: req.user.fullName,
-          userFullName: "John Doe",
+          userFullName: req.user.name,
           allHabits: data
         };
         console.log(hbsObject);
         res.render("dashboard", hbsObject);
       });
-    // res.send("YOU MADE IT, YOU'RE LOGGED IN! " + req.user.email);
   })
   
   // Render 404 page for any unmatched routes

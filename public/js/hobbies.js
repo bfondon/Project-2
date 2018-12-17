@@ -52,15 +52,16 @@ $(".start").on("click",function(){
         count(whichOne);
     }, 1000);
     console.log(intervalArr[whichOne]);
-    logStartTime();
+    // logStartTime();
 }
 })
 //Listen for click event on any stop button, and stop that specific timer when clicked.
 $(".stop").on("click", function() {
     console.log($(this).attr("data-type"));
     let whichOneStop = ($(this).attr("data-type"));
-    logStopTime();
+    // logStopTime();
     clearInterval(intervalArr[whichOneStop]);
+    logStopTime("whatever the user's id is", whichOneStop)
     reset();
 });
 
@@ -79,7 +80,6 @@ function count(i) {
 }
 
 function timeConverter(t) {
-
     var hours = Math.floor(t / 60 / 60);
     var minutes = hours - Math.floor(t / 60);
     var seconds = t - (minutes * 60);
@@ -107,9 +107,9 @@ function logStartTime() {
     //create a row in timeLog table 
     //username, discipline, start time,
     var timeLog = {
-        userID: xxx, //user email,
-        hours: 0,
-        subdiscipline: xxx,//chosen study
+        userID: "xxx", //user email,
+        seconds: 0,
+        discipline: "xxx",//chosen study
     }
     $.post("api/timeLog", timeLog)
         .then(function(data) {
@@ -118,16 +118,20 @@ function logStartTime() {
         })
 };
 
-function logStopTime() {
+function logStopTime(user_id, timer_id) {
     //finds the entry by the id from previous entry
     //insert into that entry the stop time
     var timeLog = {
-        userID: xxx, //user email,
-        hours: (t / 60 / 60), //elapsed time in hours
-        subdiscipline: xxx,//chosen study
+        userID: user_id, //user email,
+        seconds: t, //elapsed time in hours
+        discipline: timer_id,//chosen study
     }
     $.put("api/timeLog", timeLog);
     // updateTotal();
+}
+
+function getIds() {
+    $.get()
 }
 
 // function updateTotal() {

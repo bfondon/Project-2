@@ -26,8 +26,18 @@ jQuery(document).ready(function($){
 		})
     }
     $.get("/api/allUsers", function(data){
-        console.log(data);
-    })
+        console.log(data[1]);
+        //Pull and display subd1 details from database
+        $("#subdiscipline1").text(data[1].subdiscipline1);
+        $("#subd1hours").text(data[1].subD1Hours);
+        //Pull and display subd2 details from database
+        $("#subdiscipline2").text(data[1].subdiscipline2);
+        $("#subd2hours").text(data[1].subD2Hours);
+        //Pull and display subd2 details from database
+        $("#subdiscipline3").text(data[1].subdiscipline3);
+        $("#subd3hours").text(data[1].subD3Hours);
+
+    });
 });
 
 //Timers

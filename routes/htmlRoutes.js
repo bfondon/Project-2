@@ -55,6 +55,13 @@ module.exports = function(app) {
     res.sendFile(path.join(__dirname, "../public/hobbies.html"))
   });
   
+  app.get("/friends", function(req, res){
+    if(!req.user){
+      return res.redirect("/")
+    }
+    res.sendFile(path.join(__dirname, "../public/friends.html"))
+  });
+
   // Render 404 page for any unmatched routes
   app.get("*", function(req, res) {
     res.sendFile(path.join(__dirname, "../public/404.html"));

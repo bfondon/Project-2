@@ -1,9 +1,7 @@
 module.exports = function(sequelize, DataTypes) {
   var Habits = sequelize.define("Habits", {
     habitname: DataTypes.STRING,
-    goal: DataTypes.INTEGER,
-    achieved: DataTypes.INTEGER,
-    achievedPercentage: DataTypes.INTEGER
+    goal: DataTypes.INTEGER
   });
 
   Habits.associate = function(models) {

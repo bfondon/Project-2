@@ -1,53 +1,42 @@
-jQuery(document).ready(function($){
-// 	//hide the subtle gradient layer (.pricing-list > li::after) when pricing table has been scrolled to the end (mobile version only)
-// 	checkScrolling($('.pricing-body'));
-// 	$(window).on('resize', function(){
-// 		window.requestAnimationFrame(function(){
-//             checkScrolling($('.pricing-body'));
-//         });
-// 	});
-// 	$('.pricing-body').on('scroll', function(){ 
-// 		var selected = $(this);
-// 		window.requestAnimationFrame(function(){
-//             checkScrolling(selected);
-//         });
-// 	});
+// // jQuery(document).ready(function($){
+// // 	//hide the subtle gradient layer (.pricing-list > li::after) when pricing table has been scrolled to the end (mobile version only)
+// // 	checkScrolling($('.pricing-body'));
+// // 	$(window).on('resize', function(){
+// // 		window.requestAnimationFrame(function(){
+// //             checkScrolling($('.pricing-body'));
+// //         });
+// // 	});
+// // 	$('.pricing-body').on('scroll', function(){ 
+// // 		var selected = $(this);
+// // 		window.requestAnimationFrame(function(){
+// //             checkScrolling(selected);
+// //         });
+// // 	});
 
-<<<<<<< HEAD
-	function checkScrolling(tables){
-		tables.each(function(){
-			var table= $(this),
-				totalTableWidth = parseInt(table.children('.pricing-features').width()),
-		 		tableViewport = parseInt(table.width());
-			if( table.scrollLeft() >= totalTableWidth - tableViewport -1 ) {
-				table.parent('li').addClass('is-ended');
-			} else {
-				table.parent('li').removeClass('is-ended');
-			}
-		})
-    }
-    //Acquire the id of the user that is logged in, and use it in the code below to 
-    //pull details for the appropriate user.
-    $.get("/api/allUsers", function(data){
-        if (data.message){
-            //  tell the user they're not logged in
-        }
-        else {
-            console.log(data);
-            //Pull and display subd1 details from database
-            $("#subdiscipline1").text(data.subdiscipline1);
-            $("#subd1hours").text(data.subD1Hours);
-            //Pull and display subd2 details from database
-            $("#subdiscipline2").text(data.subdiscipline2);
-            $("#subd2hours").text(data.subD2Hours);
-            //Pull and display subd2 details from database
-            $("#subdiscipline3").text(data.subdiscipline3);
-            $("#subd3hours").text(data.subD3Hours);
-        }
+// // 	function checkScrolling(tables){
+// // 		tables.each(function(){
+// // 			var table= $(this),
+// // 				totalTableWidth = parseInt(table.children('.pricing-features').width()),
+// // 		 		tableViewport = parseInt(table.width());
+// // 			if( table.scrollLeft() >= totalTableWidth - tableViewport -1 ) {
+// // 				table.parent('li').addClass('is-ended');
+// // 			} else {
+// // 				table.parent('li').removeClass('is-ended');
+// // 			}
+// // 		})
+// //     }
+// //     $.get("/api/allUsers", function(data){
+// //         console.log(data[1]);
+// //         //Pull and display subd1 details from database
+// //         $("#subdiscipline1").text(data[1].subdiscipline1);
+// //         $("#subd1hours").text(data[1].subD1Hours);
+// //         //Pull and display subd2 details from database
+// //         $("#subdiscipline2").text(data[1].subdiscipline2);
+// //         $("#subd2hours").text(data[1].subD2Hours);
+// //         //Pull and display subd2 details from database
+// //         $("#subdiscipline3").text(data[1].subdiscipline3);
+// //         $("#subd3hours").text(data[1].subD3Hours);
 
-        
-
-=======
 // 	function checkScrolling(tables){
 // 		tables.each(function(){
 // 			var table= $(this),
@@ -60,20 +49,29 @@ jQuery(document).ready(function($){
 // 			}
 // 		})
 //     }
+//     //Acquire the id of the user that is logged in, and use it in the code below to 
+//     //pull details for the appropriate user.
 //     $.get("/api/allUsers", function(data){
-//         console.log(data[1]);
-//         //Pull and display subd1 details from database
-//         $("#subdiscipline1").text(data[1].subdiscipline1);
-//         $("#subd1hours").text(data[1].subD1Hours);
-//         //Pull and display subd2 details from database
-//         $("#subdiscipline2").text(data[1].subdiscipline2);
-//         $("#subd2hours").text(data[1].subD2Hours);
-//         //Pull and display subd2 details from database
-//         $("#subdiscipline3").text(data[1].subdiscipline3);
-//         $("#subd3hours").text(data[1].subD3Hours);
->>>>>>> master
+//         if (data.message){
+//             //  tell the user they're not logged in
+//         }
+//         else {
+//             console.log(data);
+//             //Pull and display subd1 details from database
+//             $("#subdiscipline1").text(data.subdiscipline1);
+//             $("#subd1hours").text(data.subD1Hours);
+//             //Pull and display subd2 details from database
+//             $("#subdiscipline2").text(data.subdiscipline2);
+//             $("#subd2hours").text(data.subD2Hours);
+//             //Pull and display subd2 details from database
+//             $("#subdiscipline3").text(data.subdiscipline3);
+//             $("#subd3hours").text(data.subD3Hours);
+//         }
 
-//     });
+        
+
+
+// //     });
 // });
 
 //Timers
@@ -94,7 +92,9 @@ $(".start").on("click",function(){
 $(".stop").on("click", function() {
     console.log($(this).attr("data-type"));
     let whichOneStop = ($(this).attr("data-type"));
+    // logStopTime();
     clearInterval(intervalArr[whichOneStop]);
+    logStopTime("whatever the user's id is", whichOneStop)
     reset();
 });
 
@@ -113,8 +113,8 @@ function count(i) {
 }
 
 function timeConverter(t) {
-
-    var minutes = Math.floor(t / 60);
+    var hours = Math.floor(t / 60 / 60);
+    var minutes = hours - Math.floor(t / 60);
     var seconds = t - (minutes * 60);
   
     if (seconds < 10) {
@@ -128,6 +128,41 @@ function timeConverter(t) {
       minutes = "0" + minutes;
     }
   
-    return minutes + ":" + seconds;
+    if (hours === 0) {
+        minutes = "00"
+    } else if (hours < 10) {
+        hours = "0" + hours;
+    }
+    return hours + ":" + minutes + ":" + seconds;
   };
-});
+
+function logStartTime() {
+    //create a row in timeLog table 
+    //username, discipline, start time,
+    var timeLog = {
+        userID: "xxx", //user email,
+        seconds: 0,
+        discipline: "xxx",//chosen study
+    }
+    $.post("api/timeLog", timeLog)
+        .then(function(data) {
+            console.log("new time entry");
+            alert("Time starts now!");
+        })
+};
+
+function logStopTime(user_id, timer_id) {
+    //finds the entry by the id from previous entry
+    //insert into that entry the stop time
+    var timeLog = {
+        userID: user_id, //user email,
+        seconds: t, //elapsed time in hours
+        discipline: timer_id,//chosen study
+    }
+    $.put("api/timeLog", timeLog);
+    // updateTotal();
+}
+
+function getIds() {
+    $.get()
+}

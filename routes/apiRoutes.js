@@ -14,15 +14,17 @@ module.exports = function(app) {
 
   app.post("/api/habits", function(req, res){
     if(!req.user){
-      return res.redirect("/")
+      return res.redirect("/logout")
     }
     db.Habits.create({
       habitname: req.body.habitname,
       goal: req.body.goal,
       achieved: req.body.achieved,
+      achievedPercentage: req.body.achievedPercentage,
       UserId: req.user.id
     }).then(function(){
       console.log("added one more habit.")
+      res.status(201).send('New habit created');
     })
   });
 
@@ -40,13 +42,8 @@ module.exports = function(app) {
       res.json(err);
     });
   });
-  
-  app.get("/logout", function(req, res){
-    req.logout();
-    res.redirect("/");
-  });
-  
-  
+
+
   app.get("/api/user_data", function(req, res) {
     if (!req.user){
       res.json({});
@@ -62,10 +59,31 @@ module.exports = function(app) {
   });
 
   app.get("/api/allUsers", function(req, res) {
-    db.User.findAll({}).then(function(response) {
-      res.json(response);
+    console.log(req.user);
 
-    })
+    var userInfo
+    if(req.user) {
+      var { subdiscipline1, subD1Hours, subdiscipline2 } = req.user;
+
+      userInfo = {
+        subdiscipline1,
+        subD1Hours,
+        subdiscipline2
+      };
+    }
+    else {
+      userInfo = {
+        message: "You are not logged in"
+      };
+    }
+
+    return res.json(userInfo);
+
+    // db.User.findOne({
+    //   where: { id: req.params.id }
+    // }).then(function(response) {
+    //   res.json(response);
+    // })
   });
 };
 

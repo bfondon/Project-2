@@ -1,7 +1,7 @@
 {
     "development": {
         "username": "root",
-        "password": "root",
+        "password": "password",
         "database": "10000Hours_db",
         "host": "localhost",
         "port": 3306,

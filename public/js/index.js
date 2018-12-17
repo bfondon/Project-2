@@ -25,6 +25,8 @@ $(document).on("click","#login_submit",function(event){
   $.post("/api/login", body).then(function () {
     console.log("submitted")
     window.location.replace("/dashboard")
+}).catch(function() {
+  console.log("login failed")
 })
 
 });

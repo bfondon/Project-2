@@ -1,11 +1,11 @@
-$(document).on("click","#submit",function(event){
+$(document).on("click","#submit_signup",function(event){
   event.preventDefault()
   //debugger;
   console.log("click");
   var body = {
-    name: $("#name").val(),
-    email: $("#email").val(),
-    password: $("#password").val()
+    name: $("#name_signup").val(),
+    email: $("#email_signup").val(),
+    password: $("#password_signup").val()
 }
   $.post("/api/signup", body).then(function () {
     console.log("submitted")

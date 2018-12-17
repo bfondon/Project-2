@@ -31,7 +31,7 @@
             <div class="navbar-nav">
                 <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
                 <a class="nav-item nav-link" href="/dashboard">Dashboard</a>
-                <a class="nav-item nav-link" href="#">Friends</a>
+                <a class="nav-item nav-link" href="/friends">Friends</a>
             </div>
         </div>
         <div id="walcome-bar">
@@ -40,69 +40,75 @@
         </div>
     </nav>
 	<!-- Containers displaying Table Data -->
-	<div class="discipline-container">
-		<p class="fieldset">
-		</p>
-	</div>
-	<ul class="discipline-list bounce-invert">
-		<li>
-			<ul class="discipline-wrapper">
-				<li data-type="monthly" class="is-visible">
-					<header class="discipline-header">
-						<h2>Discipline 1</h2>
-						<div class="price">
-							<span class="value">4,124</span>
-							<span class="duration">hrs</span>
+  	<div class="discipline-container">
+			<p class="fieldset">
+			</p>
+		</div>
+		<ul class="discipline-list bounce-invert">
+			<li>
+				<ul class="discipline-wrapper">
+					<li data-type="monthly" class="is-visible">
+						<header class="discipline-header">
+							<h2 id="subdiscipline1"></h2>
+							<div class="price">
+								<span class="value" id="subd1hours"></span>
+							</div>
+						</header>
+						<div class="discipline-body">
+							<ul class="discipline-features">
+								<li>Last Session Length</li>					
+							</ul>
+							<div class="timer" id ="timer-0">00:00</div>
 						</div>
-					</header>
-					<div class="discipline-body">
-						<ul class="discipline-features">
-							<li> Last Session: </li>
-							<li> Date</li>
-							<li> Hours</li>
-						</ul>
-						<div class="timer" id="timer-0">00:00</div>
-					</div>
-					<footer class="discipline-footer">
-						<a id="start-1" class="start" data-type="0" href="#">Start Timer</a>
-						<a id="stop-1" class="stop" data-type="0" href="#">Stop Timer</a>
-					</footer>
-				</li>
-			</ul>
-		</li>
-		<li>
-			<ul class="discipline-wrapper">
-				<li data-type="monthly" class="is-visible">
-					<header class="discipline-header">
-						<h2>Discipline 2</h2>
-						<div class="price">
-							<span class="value">373</span>
-							<span class="duration">hrs</span>
+						<footer class="discipline-footer">
+							<a id="start-1" class="start" data-type="0" href="#">Start Timer</a>
+							<a id="stop-1" class="stop" data-type="0" href="#">Stop Timer</a>
+						</footer>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<ul class="discipline-wrapper">
+					<li data-type="monthly" class="is-visible">
+						<header class="discipline-header">
+							<h2 id ="subdiscipline2"></h2>
+							<div class="price">
+								<span class="value" id="subd2hours">373</span>
+								<span class="duration">hrs</span>
+							</div>
+						</header>
+						<div class="discipline-body">
+							<ul class="discipline-features">
+								<li> Some Stuff</li>
+								<li> Could Go</li>
+								<li> Here</li>
+							</ul>
+							<div class="timer" id ="timer-1">00:00</div>
 						</div>
-					</header>
-					<div class="discipline-body">
-						<ul class="discipline-features">
-							<li> Last Session: </li>
-							<li> Date</li>
-							<li> Hours</li>
-						</ul>
-						<div class="timer" id="timer-1">00:00</div>
-					</div>
-					<footer class="discipline-footer">
-						<a id="start-2" class="start" data-type="1" href="#">Start Timer</a>
-						<a id="stop-2" class="stop" data-type="1" href="#">Stop Timer</a>
-					</footer>
-				</li>
-			</ul>
-		</li>
-		<li>
-			<ul class="discipline-wrapper">
-				<li data-type="monthly" class="is-visible">
-					<header class="discipline-header">
-						<h2>Discipline 3</h2>
-						<div class="price">
-							<span class="value">2</span>
-							<span class="duration">hrs</span>
+						<footer class="discipline-footer">
+							<a id="start-2" class="start" data-type="1" href="#">Start Timer</a>
+							<a id="stop-2" class="stop" data-type="1"  href="#">Stop Timer</a>
+						</footer>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<ul class="discipline-wrapper">
+					<li data-type="monthly" class="is-visible">
+						<header class="discipline-header">
+							<h2 id="subdiscipline3"></h2>
+							<div class="price">
+								<span class="value" id="subd3hours">2</span>
+								<span class="duration">hrs</span>
+							</div>
+						</header>
+						<div class="discipline-body">
+							<ul class="discipline-features">
+								<li> Some Stuff</li>
+								<li> Could Go</li>
+								<li> Here</li>
+							</ul>
+						<div class="timer" id="timer-2">00:00</div>
 						</div>
 					</header>
 					<div class="discipline-body">

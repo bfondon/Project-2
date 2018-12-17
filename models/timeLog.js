@@ -3,7 +3,8 @@ module.exports = function (sequelize, DataTypes) {
     userID: DataTypes.STRING,
     hours: DataTypes.DECIMAL,
     subdiscipline: DataTypes.STRING,
-    comment: DataTypes.TEXT
+    // comment: DataTypes.TEXT
   });
   return timeLog;
 };
+

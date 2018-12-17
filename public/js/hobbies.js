@@ -1,44 +1,44 @@
-jQuery(document).ready(function($){
-	//hide the subtle gradient layer (.pricing-list > li::after) when pricing table has been scrolled to the end (mobile version only)
-	checkScrolling($('.pricing-body'));
-	$(window).on('resize', function(){
-		window.requestAnimationFrame(function(){
-            checkScrolling($('.pricing-body'));
-        });
-	});
-	$('.pricing-body').on('scroll', function(){ 
-		var selected = $(this);
-		window.requestAnimationFrame(function(){
-            checkScrolling(selected);
-        });
-	});
+// jQuery(document).ready(function($){
+// 	//hide the subtle gradient layer (.pricing-list > li::after) when pricing table has been scrolled to the end (mobile version only)
+// 	checkScrolling($('.pricing-body'));
+// 	$(window).on('resize', function(){
+// 		window.requestAnimationFrame(function(){
+//             checkScrolling($('.pricing-body'));
+//         });
+// 	});
+// 	$('.pricing-body').on('scroll', function(){ 
+// 		var selected = $(this);
+// 		window.requestAnimationFrame(function(){
+//             checkScrolling(selected);
+//         });
+// 	});
 
-	function checkScrolling(tables){
-		tables.each(function(){
-			var table= $(this),
-				totalTableWidth = parseInt(table.children('.pricing-features').width()),
-		 		tableViewport = parseInt(table.width());
-			if( table.scrollLeft() >= totalTableWidth - tableViewport -1 ) {
-				table.parent('li').addClass('is-ended');
-			} else {
-				table.parent('li').removeClass('is-ended');
-			}
-		})
-    }
-    $.get("/api/allUsers", function(data){
-        console.log(data[1]);
-        //Pull and display subd1 details from database
-        $("#subdiscipline1").text(data[1].subdiscipline1);
-        $("#subd1hours").text(data[1].subD1Hours);
-        //Pull and display subd2 details from database
-        $("#subdiscipline2").text(data[1].subdiscipline2);
-        $("#subd2hours").text(data[1].subD2Hours);
-        //Pull and display subd2 details from database
-        $("#subdiscipline3").text(data[1].subdiscipline3);
-        $("#subd3hours").text(data[1].subD3Hours);
+// 	function checkScrolling(tables){
+// 		tables.each(function(){
+// 			var table= $(this),
+// 				totalTableWidth = parseInt(table.children('.pricing-features').width()),
+// 		 		tableViewport = parseInt(table.width());
+// 			if( table.scrollLeft() >= totalTableWidth - tableViewport -1 ) {
+// 				table.parent('li').addClass('is-ended');
+// 			} else {
+// 				table.parent('li').removeClass('is-ended');
+// 			}
+// 		})
+//     }
+//     $.get("/api/allUsers", function(data){
+//         console.log(data[1]);
+//         //Pull and display subd1 details from database
+//         $("#subdiscipline1").text(data[1].subdiscipline1);
+//         $("#subd1hours").text(data[1].subD1Hours);
+//         //Pull and display subd2 details from database
+//         $("#subdiscipline2").text(data[1].subdiscipline2);
+//         $("#subd2hours").text(data[1].subD2Hours);
+//         //Pull and display subd2 details from database
+//         $("#subdiscipline3").text(data[1].subdiscipline3);
+//         $("#subd3hours").text(data[1].subD3Hours);
 
-    });
-});
+//     });
+// });
 
 //Timers
 let intervalArr = [null,null,null,null,null];
@@ -52,12 +52,14 @@ $(".start").on("click",function(){
         count(whichOne);
     }, 1000);
     console.log(intervalArr[whichOne]);
+    logStartTime();
 }
 })
 //Listen for click event on any stop button, and stop that specific timer when clicked.
 $(".stop").on("click", function() {
     console.log($(this).attr("data-type"));
     let whichOneStop = ($(this).attr("data-type"));
+    logStopTime();
     clearInterval(intervalArr[whichOneStop]);
     reset();
 });
@@ -78,7 +80,8 @@ function count(i) {
 
 function timeConverter(t) {
 
-    var minutes = Math.floor(t / 60);
+    var hours = Math.floor(t / 60 / 60);
+    var minutes = hours - Math.floor(t / 60);
     var seconds = t - (minutes * 60);
   
     if (seconds < 10) {
@@ -92,6 +95,43 @@ function timeConverter(t) {
       minutes = "0" + minutes;
     }
   
-    return minutes + ":" + seconds;
+    if (hours === 0) {
+        minutes = "00"
+    } else if (hours < 10) {
+        hours = "0" + hours;
+    }
+    return hours + ":" + minutes + ":" + seconds;
   };
 
+function logStartTime() {
+    //create a row in timeLog table 
+    //username, discipline, start time,
+    var timeLog = {
+        userID: xxx, //user email,
+        hours: 0,
+        subdiscipline: xxx,//chosen study
+    }
+    $.post("api/timeLog", timeLog)
+        .then(function(data) {
+            console.log("new time entry");
+            alert("Time starts now!");
+        })
+};
+
+function logStopTime() {
+    //finds the entry by the id from previous entry
+    //insert into that entry the stop time
+    var timeLog = {
+        userID: xxx, //user email,
+        hours: (t / 60 / 60), //elapsed time in hours
+        subdiscipline: xxx,//chosen study
+    }
+    $.put("api/timeLog", timeLog);
+    // updateTotal();
+}
+
+// function updateTotal() {
+//     // finds user from logStopTime
+//     //adds this time to total time column in user table
+//     //in user table it's called totalHours
+// }

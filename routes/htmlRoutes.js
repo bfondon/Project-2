@@ -7,7 +7,7 @@ module.exports = function(app) {
 
   app.get("/", function(req, res) {
     if (req.user){
-      res.redirect("/members");
+      res.redirect("/dashboard");
     }
     res.sendFile(path.join(__dirname, "../public/landing.html"));
   });
@@ -19,10 +19,15 @@ module.exports = function(app) {
 
   app.get("/login", function(req, res){
     if (req.user) {
-      res.redirect("/members");
+      res.redirect("/dashboard");
     }
-    res.sendFile(path.join(__dirname, "../public/login.html"));
+    res.sendFile(path.join(__dirname, "../public/landing.html"));
   });
+
+  app.get("/logout", function(req, res){
+    req.logout();
+    res.redirect("/");
+  })
 
   app.get("/members", isAuthenticated, function(req, res){
     res.sendFile(path.join(__dirname, "../public/members.html"));
@@ -52,7 +57,20 @@ module.exports = function(app) {
     if(!req.user){
       return res.redirect("/")
     }
-    res.sendFile(path.join(__dirname, "../public/hobbies.html"))
+
+    db.Habits.findAll({
+      where: {
+       UserId: req.user.id
+     }
+   })
+     .then(function(data) {
+       var hbsObject = {
+         userFullName: req.user.name,
+         allDisciplines: data
+       };
+       console.log(hbsObject);
+       res.render("hobbies", hbsObject);
+     });
   });
   
   app.get("/friends", function(req, res){

@@ -14,15 +14,17 @@ module.exports = function(app) {
 
   app.post("/api/habits", function(req, res){
     if(!req.user){
-      return res.redirect("/")
+      return res.redirect("/logout")
     }
     db.Habits.create({
       habitname: req.body.habitname,
       goal: req.body.goal,
       achieved: req.body.achieved,
+      achievedPercentage: req.body.achievedPercentage,
       UserId: req.user.id
     }).then(function(){
       console.log("added one more habit.")
+      res.status(201).send('New habit created');
     })
   });
 
@@ -40,13 +42,8 @@ module.exports = function(app) {
       res.json(err);
     });
   });
-  
-  app.get("/logout", function(req, res){
-    req.logout();
-    res.redirect("/");
-  });
-  
-  
+
+
   app.get("/api/user_data", function(req, res) {
     if (!req.user){
       res.json({});

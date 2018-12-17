@@ -1,18 +1,19 @@
 jQuery(document).ready(function($){
-	//hide the subtle gradient layer (.pricing-list > li::after) when pricing table has been scrolled to the end (mobile version only)
-	checkScrolling($('.pricing-body'));
-	$(window).on('resize', function(){
-		window.requestAnimationFrame(function(){
-            checkScrolling($('.pricing-body'));
-        });
-	});
-	$('.pricing-body').on('scroll', function(){ 
-		var selected = $(this);
-		window.requestAnimationFrame(function(){
-            checkScrolling(selected);
-        });
-	});
+// 	//hide the subtle gradient layer (.pricing-list > li::after) when pricing table has been scrolled to the end (mobile version only)
+// 	checkScrolling($('.pricing-body'));
+// 	$(window).on('resize', function(){
+// 		window.requestAnimationFrame(function(){
+//             checkScrolling($('.pricing-body'));
+//         });
+// 	});
+// 	$('.pricing-body').on('scroll', function(){ 
+// 		var selected = $(this);
+// 		window.requestAnimationFrame(function(){
+//             checkScrolling(selected);
+//         });
+// 	});
 
+<<<<<<< HEAD
 	function checkScrolling(tables){
 		tables.each(function(){
 			var table= $(this),
@@ -46,9 +47,34 @@ jQuery(document).ready(function($){
 
         
 
+=======
+// 	function checkScrolling(tables){
+// 		tables.each(function(){
+// 			var table= $(this),
+// 				totalTableWidth = parseInt(table.children('.pricing-features').width()),
+// 		 		tableViewport = parseInt(table.width());
+// 			if( table.scrollLeft() >= totalTableWidth - tableViewport -1 ) {
+// 				table.parent('li').addClass('is-ended');
+// 			} else {
+// 				table.parent('li').removeClass('is-ended');
+// 			}
+// 		})
+//     }
+//     $.get("/api/allUsers", function(data){
+//         console.log(data[1]);
+//         //Pull and display subd1 details from database
+//         $("#subdiscipline1").text(data[1].subdiscipline1);
+//         $("#subd1hours").text(data[1].subD1Hours);
+//         //Pull and display subd2 details from database
+//         $("#subdiscipline2").text(data[1].subdiscipline2);
+//         $("#subd2hours").text(data[1].subD2Hours);
+//         //Pull and display subd2 details from database
+//         $("#subdiscipline3").text(data[1].subdiscipline3);
+//         $("#subd3hours").text(data[1].subD3Hours);
+>>>>>>> master
 
-    });
-});
+//     });
+// });
 
 //Timers
 let intervalArr = [null,null,null,null,null];
@@ -62,7 +88,7 @@ $(".start").on("click",function(){
         count(whichOne);
     }, 1000);
     console.log(intervalArr[whichOne]);
-}
+    }
 })
 //Listen for click event on any stop button, and stop that specific timer when clicked.
 $(".stop").on("click", function() {
@@ -104,4 +130,4 @@ function timeConverter(t) {
   
     return minutes + ":" + seconds;
   };
-
+});

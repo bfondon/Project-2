@@ -13,6 +13,41 @@ jQuery(document).ready(function($){
 //         });
 // 	});
 
+<<<<<<< HEAD
+	function checkScrolling(tables){
+		tables.each(function(){
+			var table= $(this),
+				totalTableWidth = parseInt(table.children('.pricing-features').width()),
+		 		tableViewport = parseInt(table.width());
+			if( table.scrollLeft() >= totalTableWidth - tableViewport -1 ) {
+				table.parent('li').addClass('is-ended');
+			} else {
+				table.parent('li').removeClass('is-ended');
+			}
+		})
+    }
+    //Acquire the id of the user that is logged in, and use it in the code below to 
+    //pull details for the appropriate user.
+    $.get("/api/allUsers", function(data){
+        if (data.message){
+            //  tell the user they're not logged in
+        }
+        else {
+            console.log(data);
+            //Pull and display subd1 details from database
+            $("#subdiscipline1").text(data.subdiscipline1);
+            $("#subd1hours").text(data.subD1Hours);
+            //Pull and display subd2 details from database
+            $("#subdiscipline2").text(data.subdiscipline2);
+            $("#subd2hours").text(data.subD2Hours);
+            //Pull and display subd2 details from database
+            $("#subdiscipline3").text(data.subdiscipline3);
+            $("#subd3hours").text(data.subD3Hours);
+        }
+
+        
+
+=======
 // 	function checkScrolling(tables){
 // 		tables.each(function(){
 // 			var table= $(this),
@@ -36,6 +71,7 @@ jQuery(document).ready(function($){
 //         //Pull and display subd2 details from database
 //         $("#subdiscipline3").text(data[1].subdiscipline3);
 //         $("#subd3hours").text(data[1].subD3Hours);
+>>>>>>> master
 
 //     });
 // });

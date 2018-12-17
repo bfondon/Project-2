@@ -62,10 +62,31 @@ module.exports = function(app) {
   });
 
   app.get("/api/allUsers", function(req, res) {
-    db.User.findAll({}).then(function(response) {
-      res.json(response);
+    console.log(req.user);
 
-    })
+    var userInfo
+    if(req.user) {
+      var { subdiscipline1, subD1Hours, subdiscipline2 } = req.user;
+
+      userInfo = {
+        subdiscipline1,
+        subD1Hours,
+        subdiscipline2
+      };
+    }
+    else {
+      userInfo = {
+        message: "You are not logged in"
+      };
+    }
+
+    return res.json(userInfo);
+
+    // db.User.findOne({
+    //   where: { id: req.params.id }
+    // }).then(function(response) {
+    //   res.json(response);
+    // })
   });
 };
 

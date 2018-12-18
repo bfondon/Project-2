@@ -40,7 +40,7 @@
                         <a class="nav-item nav-link" href="/logout">Logout</a>
             </div>
         </div>
-        <div id="walcome-bar">
+        <div id="welcome-bar">
             <img src="" alt="">
             <p><span id="user_name"></span></p>
         </div>
@@ -73,7 +73,7 @@
 
                                     <div class="card-body">
                                         <div class="progress-box progress-1">
-                                            <h4 class="por-title">Achieved so far</h4>
+                                            <h4 class="por-title">Hours Logged</h4>
                                             <div class="por-txt">3000 hrs (60%)</div>
                                             <div class="progress mb-2" style="height: 5px;">
                                                 <div class="progress-bar bg-flat-color-1" role="progressbar" style="width: 60%;"
@@ -120,8 +120,7 @@
             e.preventDefault();
 
             var newHabit = {
-                habitname: $("#habitname").val().trim(),
-                goal: $("#goal").val().trim()
+                habitname: $("#habitname").val().trim()
             }
 
             console.log(newHabit);

@@ -3,7 +3,8 @@
 }
 
 body {
-  background-image: url("../images/photo-1514119412350-e174d90d280e.jpeg");
+  background: url("../images/photo-1514119412350-e174d90d280e.jpeg") no-repeat center center fixed;
+  background-size: cover;
 }
 
 #home-page-container {
@@ -29,7 +30,7 @@ body {
   padding: 20px;
   padding-top: 10px;
   padding-bottom: 10px;
-  margin-top: 20px;
+  margin: 20px auto;
 }
 
 #stuff {

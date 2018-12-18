@@ -105,26 +105,34 @@
             $.get("/api/user_data", function (data) {
                 //console.log(data);
                 $("#user_name").text("Hello, " + data.name + "!")
-
             });
+
+            function displayHabits(data) {
+                console.log(data);
+                for (i = 0; i < data.length; i++) {
+                    var newDiv = $("<div>");
+                    var divAnchor = $("<a href='/hobbies'>");
+                    var header = $("<h3>").text(data[i].habitname);
+                    divAnchor.append(header);
+                    newDiv.attr("class", "dynamicHabit");
+                    newDiv.append(divAnchor);
+
+                    $(".habits").prepend(newDiv);
+                }
+            }
+            function getHabits() {
+                $.get("/api/user_habits", function (data) {
+                    //console.log(data)
+                    displayHabits(data)
+                });
+            }
 
             $("#addButton").click(function (e) {
                 e.preventDefault();
 
-                var newDiv = $("<div>");
-                var divAnchor = $("<a href='/hobbies'>");
-                var header = $("<h3>").text($("#habitname").val().trim());
-                divAnchor.append(header);
-                newDiv.attr("class", "dynamicHabit");
-                newDiv.append(divAnchor);
-
                 var newHabit = {
                     habitname: $("#habitname").val().trim(),
-
                 }
-
-                $(".habits").prepend(newDiv);
-
 
 
                 console.log(newHabit);
@@ -134,6 +142,7 @@
                     data: newHabit
                 }).then(function (res) {
                     console.log("habit added.")
+                    displayHabits([res]);
                     // var div = $("<div>");
                     // div.attr("id", "res.???");
                     // div.text(res.habitname);
@@ -144,6 +153,7 @@
                     // location.reload();
                 })
             });
+            getHabits();
         });
     </script>
 </body>

@@ -20,9 +20,9 @@ module.exports = function (app) {
       habitname: req.body.habitname,
 
       UserId: req.user.id
-    }).then(function () {
+    }).then(function (dbres) {
       console.log("added one more habit.")
-      res.status(201).send('New habit created');
+      res.json(dbres);
     })
   });
 

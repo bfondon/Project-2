@@ -74,6 +74,7 @@
 // //     });
 // });
 
+
 //Timers
 let intervalArr = [null,null,null,null,null];
 //Listen for click event on any start button, and start that specific timer when clicked.

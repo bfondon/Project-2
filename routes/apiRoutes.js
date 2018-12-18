@@ -58,6 +58,18 @@ module.exports = function(app) {
     }
   });
 
+  app.post("/api/timeLog", function(req, res) {
+    db.timeLog.create({
+      habitID: req.body.habitID,
+      seconds: req.body.seconds,
+    }).then(function() {
+      console.log("timeLog successful");
+    }).catch(function(err) {
+      console.log(err);
+      res.json(err);
+    });
+  });
+
   app.get("/api/allUsers", function(req, res) {
     console.log(req.user);
 

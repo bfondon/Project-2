@@ -58,6 +58,20 @@ module.exports = function(app) {
     }
   });
 
+  app.get("/api/user_habits", function(req, res) {
+    if (!req.user){
+      res.json({});
+      console.log(res.json({}));
+    }
+    else {
+      db.Habits.findAll({
+        include: [db.User]
+      }).then(function(data){
+        res.json(data)
+      })
+    }
+  });
+
   app.get("/api/allUsers", function(req, res) {
     console.log(req.user);
 

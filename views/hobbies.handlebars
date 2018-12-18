@@ -1,56 +1,55 @@
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-                <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-                <a class="nav-item nav-link" href="/dashboard">Dashboard</a>
-                <a class="nav-item nav-link" href="/friends">Friends</a>
-            </div>
-			<button href="/logout" id="logout-submit">log out</button>
-        </div>
-        <div id="walcome-bar">
-                <img src="" alt="">
-                <p><span>{{userFullName}}, </span> welcome to 10000 challenge</p>
-        </div>
-	</nav>
-	
-	<!-- Containers displaying Table Data -->
-  	<div class="discipline-container">
-			<p class="fieldset">
-			</p>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
+	 aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+		<div class="navbar-nav">
+			<a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
+			<a class="nav-item nav-link" href="/dashboard">Dashboard</a>
+			<a class="nav-item nav-link" href="/friends">Friends</a>
 		</div>
-		<ul class="discipline-list bounce-invert">
-			{{#each allDisciplines}}
-			<li>
-				<ul class="discipline-wrapper">
-					<li data-type="monthly" class="is-visible">
-						<header class="discipline-header">
-							<h2>{{habitname}}</h2>
-							<div class="price">
-								<span class="value">12</span>
-								<span class="duration">hrs</span>
-							</div>
-						</header>
-						<div class="discipline-body">
-							<ul class="discipline-features">
-								<li> Some Stuff</li>
-								<li> Could Go</li>
-								<li> Here</li>						
-							</ul>
-							<div class="timer" id ="timer-4">00:00</div>
-						</div>
-						<footer class="discipline-footer">
-							<a id="start-5" class="start" data-type="4" href="#">Start Timer</a>
-							<a id="stop-5" class="stop" data-type="4" href="#">Stop Timer</a>
-						</footer>
-					</li>
-				</ul>
+		<button href="/logout" id="logout-submit">log out</button>
+	</div>
+	<div id="walcome-bar">
+		<img src="" alt="">
+		<p><span>{{userFullName}}, </span> welcome to 10000 challenge</p>
+	</div>
+</nav>
+
+<!-- Containers displaying Table Data -->
+{{!-- <div class="discipline-container">
+	<p class="fieldset">
+	</p>
+</div> --}}
+<ul class="discipline-list bounce-invert">
+	{{#each allDisciplines}}
+	<li>
+		<ul class="discipline-wrapper">
+			<li data-type="monthly" class="is-visible">
+				<header class="discipline-header">
+					<h2>{{habitname}}</h2>
+					<div class="price">
+						<span class="value">12</span>
+						<span class="duration">hrs</span>
+					</div>
+				</header>
+				<div class="discipline-body">
+					<ul class="discipline-features">
+						<li> Some Stuff</li>
+						<li> Could Go</li>
+						<li> Here</li>
+					</ul>
+					<div class="timer" id="timer-4">00:00</div>
+				</div>
+				<footer class="discipline-footer">
+					<a id="start-5" class="start" data-type="4" href="#">Start Timer</a>
+					<a id="stop-5" class="stop" data-type="4" href="#">Stop Timer</a>
+				</footer>
 			</li>
-			{{/each}}
 		</ul>
+	</li>
+	{{/each}}
+</ul>
 
 <script src="/js/hobbies.js"></script>
-

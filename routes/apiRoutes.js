@@ -71,6 +71,7 @@ module.exports = function(app) {
       })
     }
   });
+  
   app.post("/api/timeLog", function(req, res) {
     db.timeLog.create({
       habitID: req.body.habitID,

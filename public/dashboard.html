@@ -54,12 +54,10 @@
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="add-button">
-                                <label for="habitname">Habit Name:</label>
-                                <input type="text" id="habitname">
+                            <label for="habitname">Habit Name:</label>
+                            <input type="text" id="habitname">
                             <br><br>
                             <button id="addButton">Add Habit</button>
-                            <!-- <label for="achieved">achieved:</label>
-                            <input type="text" id="achieved"> -->
                         </div>
                         <br>
                         <div class="row">
@@ -110,37 +108,55 @@
 
             });
 
-            $.get("/api/user_habits", function (data) {
-                console.log(data[1]);
-                $("#habit_name").text(data[1].habitname);
-            })
-        });
+            $("#addButton").click(function (e) {
+                e.preventDefault();
 
-        $("#addButton").click(function (e) {
-            e.preventDefault();
+                // <div id="habit1">
+                //     <a href="/hobbies">
+                //         <h3 id="habit_name"></h3>
+                //         <p id="hour_goal"></p>
+                //     </a>
+                // </div>
 
-            var newHabit = {
-                habitname: $("#habitname").val().trim()
-            }
+                var newDiv = $("<div>");
+                var divAnchor = $("<a href='/hobbies'>");
+                var header = $("<h3>").text($("#habitname").val().trim());
+                divAnchor.append(header);
+                newDiv.attr("class", "dynamicHabit");
+                newDiv.append(divAnchor);
 
-            console.log(newHabit);
+                var newHabit = {
+                    habitname: $("#habitname").val().trim(),
 
-            $.ajax("/api/habits", {
-                type: "POST",
-                data: newHabit
-            }).then(function (res) {
-                console.log("habit added.")
-                // var div = $("<div>");
-                // div.attr("id", "res.???");
-                // div.text(res.habitname);
-                // div.append("<p>" + res.goal  + "</p>");
-                // div.append("<p>" + res.achieved + "</p>");
-                // $(".habits").append(div);
-                // console.log("created new habit");
-                // location.reload();
-            })
+                }
+
+                $(".habits").prepend(newDiv);
 
 
+
+                console.log(newHabit);
+
+                $.ajax("/api/habits", {
+                    type: "POST",
+                    data: newHabit
+                }).then(function (res) {
+                    console.log("habit added.")
+                    // var div = $("<div>");
+                    // div.attr("id", "res.???");
+                    // div.text(res.habitname);
+                    // div.append("<p>" + res.goal  + "</p>");
+                    // div.append("<p>" + res.achieved + "</p>");
+                    // $(".habits").append(div);
+                    // console.log("created new habit");
+                    // location.reload();
+                })
+            });
+
+            // $.get("/api/user_habits", function (data) {
+            //         console.log(data[1]);
+            //         $("#habit_name").text(data[1].habitname);
+            //         $("#hour_goal").text("Goal: " + data[1].goal + " hours");
+            //     });
         });
     </script>
 </body>

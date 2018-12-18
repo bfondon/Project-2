@@ -71,7 +71,7 @@ module.exports = function(app) {
       })
     }
   });
-
+  
   app.post("/api/timeLog", function(req, res) {
     db.timeLog.create({
       habitID: req.body.habitID,
@@ -111,7 +111,7 @@ module.exports = function(app) {
     //   res.json(response);
     // })
   });
-};
+  };
 
 
 // module.exports = function(app) {

@@ -6,7 +6,6 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="nav-item nav-link" href="#">Home
                     <a class="nav-item nav-link active" href="/dashboard">Dashboard
                         <a class="nav-item nav-link" href="/friends">Friends</a>
                         <a class="nav-item nav-link" href="/logout">Logout</a>
@@ -14,22 +13,10 @@
         </div>
         <div id="welcome-bar">
             <img src="" alt="">
-            <p><span id="user_name"></span></p>
+		<p><span>{{userFullName}}, </span> welcome to 10000 challenge</p>
         </div>
     </nav>
 	
-	<!-- Containers displaying Table Data -->
-  	<div class="discipline-container">
-			<p class="fieldset">
-			</p>
-		</div>
-		<button href="/logout" id="logout-submit">log out</button>
-	</div>
-	<div id="walcome-bar">
-		<img src="" alt="">
-		<p><span>{{userFullName}}, </span> welcome to 10000 challenge</p>
-	</div>
-</nav>
 
 <!-- Containers displaying Table Data -->
 {{!-- <div class="discipline-container">

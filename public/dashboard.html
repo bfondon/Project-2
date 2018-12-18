@@ -68,8 +68,6 @@
                                     <div id="habit1">
                                         <a href="/hobbies">
                                             <h3 id="habit_name"></h3>
-                                            <p id="hour_goal"></p>
-                                            <p id="achieved_hour"></p>
                                         </a>
                                     </div>
 
@@ -115,7 +113,6 @@
             $.get("/api/user_habits", function (data) {
                 console.log(data[1]);
                 $("#habit_name").text(data[1].habitname);
-                $("#hour_goal").text("Goal: " + data[1].goal + " hours");
             })
         });
 

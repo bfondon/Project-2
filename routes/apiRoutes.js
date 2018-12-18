@@ -18,9 +18,7 @@ module.exports = function (app) {
     }
     db.Habits.create({
       habitname: req.body.habitname,
-      goal: req.body.goal,
-      achieved: req.body.achieved,
-      achievedPercentage: req.body.achievedPercentage,
+
       UserId: req.user.id
     }).then(function () {
       console.log("added one more habit.")
@@ -65,6 +63,7 @@ module.exports = function (app) {
     }
     else {
       db.Habits.findAll({
+        where: { UserId: req.user.id },
         include: [db.User]
       }).then(function (data) {
         res.json(data)

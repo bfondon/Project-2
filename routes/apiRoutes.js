@@ -58,7 +58,6 @@ module.exports = function(app) {
     }
   });
 
-<<<<<<< HEAD
   app.get("/api/user_habits", function(req, res) {
     if (!req.user){
       res.json({});
@@ -71,7 +70,8 @@ module.exports = function(app) {
         res.json(data)
       })
     }
-=======
+  });
+
   app.post("/api/timeLog", function(req, res) {
     db.timeLog.create({
       habitID: req.body.habitID,
@@ -82,7 +82,6 @@ module.exports = function(app) {
       console.log(err);
       res.json(err);
     });
->>>>>>> master
   });
 
   app.get("/api/allUsers", function(req, res) {

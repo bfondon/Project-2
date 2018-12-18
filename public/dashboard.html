@@ -111,13 +111,6 @@
             $("#addButton").click(function (e) {
                 e.preventDefault();
 
-                // <div id="habit1">
-                //     <a href="/hobbies">
-                //         <h3 id="habit_name"></h3>
-                //         <p id="hour_goal"></p>
-                //     </a>
-                // </div>
-
                 var newDiv = $("<div>");
                 var divAnchor = $("<a href='/hobbies'>");
                 var header = $("<h3>").text($("#habitname").val().trim());
@@ -151,12 +144,6 @@
                     // location.reload();
                 })
             });
-
-            // $.get("/api/user_habits", function (data) {
-            //         console.log(data[1]);
-            //         $("#habit_name").text(data[1].habitname);
-            //         $("#hour_goal").text("Goal: " + data[1].goal + " hours");
-            //     });
         });
     </script>
 </body>

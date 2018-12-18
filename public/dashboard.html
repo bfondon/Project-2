@@ -42,7 +42,7 @@
         </div>
         <div id="walcome-bar">
             <img src="" alt="">
-            <p><span>name,</span> welcome to 10000 challenge</p>
+            <p><span id="user_name"></span></p>
         </div>
     </nav>
     <div class="dashboard">
@@ -60,17 +60,17 @@
                             <input type="text" id="habitname"><br>
                             <label for="goal">goal:</label>
                             <input type="text" id="goal"><br>
-                            <label for="achieved">achieved:</label>
-                            <input type="text" id="achieved">
+                            <!-- <label for="achieved">achieved:</label>
+                            <input type="text" id="achieved"> -->
                         </div>
                         <br>
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="habits">
                                     <div id="habit1">
-                                        <h3>running</h3>
-                                        <p>goal: 5000hrs</p>
-                                        <p>achieved so far: 3000hrs</p>
+                                        <h3 id="habit_name"></h3>
+                                        <p id="hour_goal"></p>
+                                        <p id="achieved_hour"></p>
                                     </div>
 
                                     <div class="card-body">
@@ -105,6 +105,20 @@
 
 
     <script>
+        $(document).ready(function(){
+            $.get("/api/user_data", function(data){
+                //console.log(data);
+                $("#user_name").text("Hello, " + data.name + "!")
+
+            });
+        
+            $.get("/api/user_habits", function(data){
+                console.log(data[1]);
+                $("#habit_name").text(data[1].habitname);
+                $("#hour_goal").text("Goal: " + data[1].goal + " hours");
+            })
+        });
+
         $("#addButton").click(function (e) {
             e.preventDefault();
 

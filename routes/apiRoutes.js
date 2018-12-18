@@ -58,8 +58,13 @@ module.exports = function (app) {
     }
   });
 
+<<<<<<< HEAD
   app.get("/api/user_habits", function (req, res) {
     if (!req.user) {
+=======
+  app.get("/api/user_habits", function(req, res) {
+    if (!req.user){
+>>>>>>> master
       res.json({});
       console.log(res.json({}));
     }
@@ -71,7 +76,12 @@ module.exports = function (app) {
       })
     }
   });
+<<<<<<< HEAD
   app.post("/api/timeLog", function (req, res) {
+=======
+  
+  app.post("/api/timeLog", function(req, res) {
+>>>>>>> master
     db.timeLog.create({
       habitID: req.body.habitID,
       seconds: req.body.seconds,
@@ -110,7 +120,7 @@ module.exports = function (app) {
     //   res.json(response);
     // })
   });
-};
+  };
 
 
 // module.exports = function(app) {

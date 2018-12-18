@@ -30,13 +30,6 @@ app.engine(
 );
 app.set("view engine", "handlebars");
 
-
-
-
-// app.post("/api/login", passport.authenticate("local"), function(req, res){
-//   res.redirect(307, '/api/dashboard');
-// })
-
 app.post("/api/signup", function(req, res){
   console.log(req.body);
   db.User.create(req.body).then(function(response){

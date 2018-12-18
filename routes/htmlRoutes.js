@@ -38,40 +38,28 @@ module.exports = function(app) {
       return res.redirect("/")
     }
     console.log("current user: " + req.user.name);
-    db.Habits.findAll({
-       where: {
-        UserId: req.user.id
-      }
-    })
-      .then(function(data) {
-        var hbsObject = {
-          userFullName: req.user.name,
-          allHabits: data
-        };
-        console.log(hbsObject);
-        res.render("dashboard", hbsObject);
-      });
+    res.sendFile(path.join(__dirname, "../public/dashboard.html"))
   })
   
-  app.get("/hobbies", function(req, res){
-    if(!req.user){
-      return res.redirect("/")
-    }
+  // app.get("/hobbies", function(req, res){
+  //   if(!req.user){
+  //     return res.redirect("/")
+  //   }
 
-    db.Habits.findAll({
-      where: {
-       UserId: req.user.id
-     }
-   })
-     .then(function(data) {
-       var hbsObject = {
-         userFullName: req.user.name,
-         allDisciplines: data
-       };
-       console.log(hbsObject);
-       res.render("hobbies", hbsObject);
-     });
-  });
+  //   db.Habits.findAll({
+  //     where: {
+  //      UserId: req.user.id
+  //    }
+  //  })
+  //    .then(function(data) {
+  //      var hbsObject = {
+  //        userFullName: req.user.name,
+  //        allDisciplines: data
+  //      };
+  //      console.log(hbsObject);
+  //      res.render("hobbies", hbsObject);
+  //    });
+  // });
   
   app.get("/friends", function(req, res){
     if(!req.user){

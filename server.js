@@ -54,7 +54,7 @@ app.post("/api/signup", function(req, res){
 require("./routes/apiRoutes")(app);
 require("./routes/htmlRoutes")(app);
 
-var syncOptions = { force: false };
+var syncOptions = { force: true };
 //when table changed in model, the mysql database will not change by setting (force: false);
 
 // If running a test, set syncOptions.force to true

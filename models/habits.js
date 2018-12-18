@@ -12,6 +12,9 @@ module.exports = function(sequelize, DataTypes) {
         allowNull: false
       }
     });
+    Habits.hasMany(models.timeLog, {
+      onDelete: "cascade"
+    });
   };
   return Habits;
 };

@@ -2,9 +2,9 @@ var db = require("../models");
 var passport = require("../config/passport")
 
 
-module.exports = function(app) {
+module.exports = function (app) {
 
-  app.post("/api/login", passport.authenticate("local"), function(req, res) {
+  app.post("/api/login", passport.authenticate("local"), function (req, res) {
     console.log("in login")
     // Since we're doing a POST with javascript, we can't actually redirect that post into a GET request
     // So we're sending the user back the route to the members page because the redirect will happen on the front end
@@ -12,40 +12,38 @@ module.exports = function(app) {
     res.json("/members");
   });
 
-  app.post("/api/habits", function(req, res){
-    if(!req.user){
+  app.post("/api/habits", function (req, res) {
+    if (!req.user) {
       return res.redirect("/logout")
     }
     db.Habits.create({
       habitname: req.body.habitname,
-      goal: req.body.goal,
-      achieved: req.body.achieved,
-      achievedPercentage: req.body.achievedPercentage,
+
       UserId: req.user.id
-    }).then(function(){
+    }).then(function () {
       console.log("added one more habit.")
       res.status(201).send('New habit created');
     })
   });
 
-  app.post("/api/signup", function(req, res){
+  app.post("/api/signup", function (req, res) {
     console.log("before user")
     db.User.create({
       name: req.body.name,
       email: req.body.email,
-      password:req.body.password
-    }).then(function() {
+      password: req.body.password
+    }).then(function () {
       console.log("after user");
       res.redirect(307, "/api/login");
-    }).catch(function(err) {
+    }).catch(function (err) {
       console.log(err);
       res.json(err);
     });
   });
 
 
-  app.get("/api/user_data", function(req, res) {
-    if (!req.user){
+  app.get("/api/user_data", function (req, res) {
+    if (!req.user) {
       res.json({});
       console.log(res.json({}));
     }
@@ -65,8 +63,9 @@ module.exports = function(app) {
     }
     else {
       db.Habits.findAll({
+        where: { UserId: req.user.id },
         include: [db.User]
-      }).then(function(data){
+      }).then(function (data) {
         res.json(data)
       })
     }
@@ -76,19 +75,19 @@ module.exports = function(app) {
     db.timeLog.create({
       habitID: req.body.habitID,
       seconds: req.body.seconds,
-    }).then(function() {
+    }).then(function () {
       console.log("timeLog successful");
-    }).catch(function(err) {
+    }).catch(function (err) {
       console.log(err);
       res.json(err);
     });
   });
 
-  app.get("/api/allUsers", function(req, res) {
+  app.get("/api/allUsers", function (req, res) {
     console.log(req.user);
 
     var userInfo
-    if(req.user) {
+    if (req.user) {
       var { subdiscipline1, subD1Hours, subdiscipline2 } = req.user;
 
       userInfo = {

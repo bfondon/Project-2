@@ -74,7 +74,7 @@
 // //     });
 // });
 
-
+let timerSeconds = 0;
 //Timers
 let intervalArr = [null,null,null,null,null];
 //Listen for click event on any start button, and start that specific timer when clicked.
@@ -94,7 +94,7 @@ $(".stop").on("click", function() {
     console.log($(this).attr("data-type"));
     let whichOneStop = ($(this).attr("data-type"));
     // logStopTime();
-    logTime(whichOneStop, time[i])
+    logTime(whichOneStop)
     clearInterval(intervalArr[whichOneStop]);
     reset();
 });
@@ -108,6 +108,7 @@ function reset(){
 function count(i) {
 
     time[i]++;
+    timerSeconds = time[i];
     console.log(i);
     var converted = timeConverter(time[i]);
     $("#timer-"+i).text(converted);
@@ -138,10 +139,10 @@ function timeConverter(t) {
   };
 
 
-function logTime(habit_id, t) {
+function logTime(habit_id) {
     var timeLog = {
         habitID: habit_id, 
-        seconds: t
+        seconds: timerSeconds
     }
     $.post("api/timeLog", timeLog);
 }

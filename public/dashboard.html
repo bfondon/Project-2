@@ -16,7 +16,7 @@
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.0/css/flag-icon.min.css"> -->
     <!-- <link rel="stylesheet" href="assets/css/cs-skin-elastic.css"> -->
     <link rel="stylesheet" href="styles/style.css">
-<!-- 
+    <!-- 
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css"> -->
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
@@ -34,15 +34,15 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="nav-item nav-link" href="#">Home 
-                <a class="nav-item nav-link active" href="/dashboard">Dashboard
-                <a class="nav-item nav-link" href="/friends">Friends</a>
-                <a class="nav-item nav-link" href="/logout">Logout</a>
+                <a class="nav-item nav-link" href="#">Home
+                    <a class="nav-item nav-link active" href="/dashboard">Dashboard
+                        <a class="nav-item nav-link" href="/friends">Friends</a>
+                        <a class="nav-item nav-link" href="/logout">Logout</a>
             </div>
         </div>
         <div id="walcome-bar">
             <img src="" alt="">
-            <p><span>name,</span> welcome to 10000 challenge</p>
+            <p><span id="user_name"></span></p>
         </div>
     </nav>
     <div class="dashboard">
@@ -54,23 +54,23 @@
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="add-button">
-                            <button id="addButton">+</button>
-                            <span>add habit</span><br>
-                            <label for="habitname">habitname:</label>
-                            <input type="text" id="habitname"><br>
-                            <label for="goal">goal:</label>
-                            <input type="text" id="goal"><br>
-                            <label for="achieved">achieved:</label>
-                            <input type="text" id="achieved">
+                                <label for="habitname">Habit Name:</label>
+                                <input type="text" id="habitname">
+                            <br><br>
+                            <button id="addButton">Add Habit</button>
+                            <!-- <label for="achieved">achieved:</label>
+                            <input type="text" id="achieved"> -->
                         </div>
                         <br>
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="habits">
                                     <div id="habit1">
-                                        <h3>running</h3>
-                                        <p>goal: 5000hrs</p>
-                                        <p>achieved so far: 3000hrs</p>
+                                        <a href="/hobbies">
+                                            <h3 id="habit_name"></h3>
+                                            <p id="hour_goal"></p>
+                                            <p id="achieved_hour"></p>
+                                        </a>
                                     </div>
 
                                     <div class="card-body">
@@ -105,13 +105,26 @@
 
 
     <script>
+        $(document).ready(function () {
+            $.get("/api/user_data", function (data) {
+                //console.log(data);
+                $("#user_name").text("Hello, " + data.name + "!")
+
+            });
+
+            $.get("/api/user_habits", function (data) {
+                console.log(data[1]);
+                $("#habit_name").text(data[1].habitname);
+                $("#hour_goal").text("Goal: " + data[1].goal + " hours");
+            })
+        });
+
         $("#addButton").click(function (e) {
             e.preventDefault();
 
             var newHabit = {
                 habitname: $("#habitname").val().trim(),
-                goal: $("#goal").val().trim(),
-                achieved: $("#achieved").val().trim()
+                goal: $("#goal").val().trim()
             }
 
             console.log(newHabit);

@@ -58,6 +58,20 @@ module.exports = function(app) {
     }
   });
 
+  app.get("/api/user_habits", function(req, res) {
+    if (!req.user){
+      res.json({});
+      console.log(res.json({}));
+    }
+    else {
+      db.Habits.findAll({
+        include: [db.User]
+      }).then(function(data){
+        res.json(data)
+      })
+    }
+  });
+  
   app.post("/api/timeLog", function(req, res) {
     db.timeLog.create({
       habitID: req.body.habitID,
@@ -97,7 +111,7 @@ module.exports = function(app) {
     //   res.json(response);
     // })
   });
-};
+  };
 
 
 // module.exports = function(app) {

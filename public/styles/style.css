@@ -2,9 +2,40 @@
   border-bottom: 4pt solid grey;
 }
 
+.navbar {
+  padding-top: 25px;
+  padding-bottom: 25px;
+  padding-left:15px;
+
+}
+
+.navbar-brand {
+  font-weight: 500;
+  font-size: 14pt;
+}
+
+.nav-item {
+  font-size: 12pt;
+}
+
 body {
   background: url("../images/photo-1514119412350-e174d90d280e.jpeg") no-repeat center center fixed;
   background-size: cover;
+}
+
+.friends-container {
+  background-color: aliceblue;
+  width: 60%;
+  height: 30%;
+  margin: auto;
+  margin-top: 30px;
+  padding: 10px;
+  padding-top: 25px;
+  Opacity: 0.9;
+}
+
+.col {
+  text-align: center;
 }
 
 #home-page-container {

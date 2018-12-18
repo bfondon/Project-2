@@ -93,8 +93,8 @@ $(".stop").on("click", function() {
     console.log($(this).attr("data-type"));
     let whichOneStop = ($(this).attr("data-type"));
     // logStopTime();
+    logTime(whichOneStop, time[i])
     clearInterval(intervalArr[whichOneStop]);
-    logStopTime("whatever the user's id is", whichOneStop)
     reset();
 });
 
@@ -136,33 +136,15 @@ function timeConverter(t) {
     return hours + ":" + minutes + ":" + seconds;
   };
 
-function logStartTime() {
-    //create a row in timeLog table 
-    //username, discipline, start time,
-    var timeLog = {
-        userID: "xxx", //user email,
-        seconds: 0,
-        discipline: "xxx",//chosen study
-    }
-    $.post("api/timeLog", timeLog)
-        .then(function(data) {
-            console.log("new time entry");
-            alert("Time starts now!");
-        })
-};
 
-function logStopTime(user_id, timer_id) {
-    //finds the entry by the id from previous entry
-    //insert into that entry the stop time
+function logTime(habit_id, t) {
     var timeLog = {
-        userID: user_id, //user email,
-        seconds: t, //elapsed time in hours
-        discipline: timer_id,//chosen study
+        habitID: habit_id, 
+        seconds: t
     }
-    $.put("api/timeLog", timeLog);
-    // updateTotal();
+    $.post("api/timeLog", timeLog);
 }
 
-function getIds() {
-    $.get()
-}
+// function getIds() {
+//     $.get()
+// }
